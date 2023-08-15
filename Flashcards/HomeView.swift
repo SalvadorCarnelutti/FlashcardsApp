@@ -10,7 +10,7 @@ import SwiftData
 
 struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \.name) private var categories: [Category]
+    @Query(sort: \Category.name) private var categories: [Category]
     @State var isFormPresented: Bool = false
     
     var body: some View {
@@ -30,9 +30,12 @@ struct HomeView: View {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: toggleForm) {
+                    NavigationLink(destination: AddFlashcardView()) {
                         Label("Add category", systemImage: "plus")
                     }
+//                    Button(action: toggleForm) {
+//                        Label("Add category", systemImage: "plus")
+//                    }
                 }
             }
             .navigationTitle("Home")

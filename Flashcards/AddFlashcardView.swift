@@ -8,28 +8,30 @@
 import SwiftUI
 import Observation
 
-@Observable final class AddFlashcardViewModel {
-    let flashcardPromptViewModel = FlashcardViewModel(text: "Sample Front",
+final class AddFlashcardViewModel: ObservableObject {
+    @Published var flashcardPromptViewModel = FlashcardViewModel(text: "Sample Front",
                                                       side: "FRONT",
                                                       color: .cyan)
     
-    let flashcardAnswerViewModel = FlashcardViewModel(text: "Sample Back",
+    @Published var flashcardAnswerViewModel = FlashcardViewModel(text: "Sample Back",
                                                       side: "BACK",
                                                       color: .yellow)
     
     var getFlashcard: Flashcard {
-        Flashcard(prompt: flashcardPromptViewModel.text, answer: flashcardAnswerViewModel.text)
+        Flashcard(prompt: flashcardPromptViewModel.text,
+                  answer: flashcardAnswerViewModel.text,
+                  collection: Collection(name: "Random"))
     }
 }
 
 struct AddFlashcardView: View {
-    var addFlashcardViewModel: AddFlashcardViewModel
+    @StateObject var addFlashcardViewModel = AddFlashcardViewModel()
     @Environment(\.modelContext) private var modelContext
     
     var body: some View {
         VStack {
-            FlashcardView(flashcardViewModel: addFlashcardViewModel.flashcardPromptViewModel)
-            FlashcardView(flashcardViewModel: addFlashcardViewModel.flashcardAnswerViewModel)
+            EditableFlashcardView(flashcardViewModel: addFlashcardViewModel.flashcardPromptViewModel)
+            EditableFlashcardView(flashcardViewModel: addFlashcardViewModel.flashcardAnswerViewModel)
             Spacer()
             Button(action: addCard) {
                 Text("Add flashcard")
@@ -50,11 +52,13 @@ struct AddFlashcardView: View {
 }
 
 #Preview("Front") {
-    AddFlashcardView(addFlashcardViewModel: AddFlashcardViewModel())
+    AddFlashcardView()
+        .modelContainer(for: Category.self, inMemory: true)
 }
 
 #Preview("Back") {
-    AddFlashcardView(addFlashcardViewModel: AddFlashcardViewModel())
+    AddFlashcardView()
+        .modelContainer(for: Category.self, inMemory: true)
 }
 
 final class FlashcardViewModel: ObservableObject {
@@ -68,3 +72,4 @@ final class FlashcardViewModel: ObservableObject {
         self.color = color
     }
 }
+
