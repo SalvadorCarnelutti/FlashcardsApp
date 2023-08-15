@@ -2,13 +2,13 @@
 //  FlashcardView.swift
 //  Flashcards
 //
-//  Created by Salvador on 8/14/23.
+//  Created by Salvador on 8/15/23.
 //
 
 import SwiftUI
 
 struct FlashcardView: View {
-    @StateObject var flashcardViewModel: FlashcardViewModel
+    let flashcardViewModel: FlashcardViewModel
     
     var body: some View {
         VStack {
@@ -16,17 +16,19 @@ struct FlashcardView: View {
                 HStack {
                     Text(flashcardViewModel.side)
                         .font(.footnote)
+                        .padding(5)
+                        .background(flashcardViewModel.color.opacity(0.8))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                     Spacer()
                 }
                 HStack {
-                    TextField(flashcardViewModel.text,
-                              text: $flashcardViewModel.text,
-                              axis: .vertical)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(3, reservesSpace: true)
-                    .font(.title3)
-                    .background(flashcardViewModel.color.opacity(0.8))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    Text(flashcardViewModel.text)
+                        .font(.title3)
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(flashcardViewModel.color.opacity(0.8))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
                 .padding(.vertical, 40)
             }
@@ -38,9 +40,10 @@ struct FlashcardView: View {
     }
 }
 
-
 #Preview {
-    FlashcardView(flashcardViewModel: FlashcardViewModel(text: "Sample Front",
-                                                         side: "FRONT",
-                                                         color: .cyan))
+    let flashcardViewModel = FlashcardViewModel(text: "What's the biggest native bird in America?",
+                                                side: "FRONT",
+                                                color: .red)
+    
+    return FlashcardView(flashcardViewModel: flashcardViewModel)
 }
