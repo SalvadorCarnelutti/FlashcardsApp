@@ -13,9 +13,19 @@ let previewContainer: ModelContainer = {
         let container = try ModelContainer(
             for: Category.self, ModelConfiguration(inMemory: true)
         )
-        for card in SampleDeck.contents {
-            container.mainContext.insert(object: card)
+        
+        for category in SampleDeck.contents {
+            let collection = Collection(name: "Scientist")
+            container.mainContext.insert(collection)
+            
+            let flashcard = Flashcard(prompt: "Who did X?", answer: "X was done by Y", collection: collection)
+            collection.flashcards.append(flashcard)
+            
+            category.collections = [collection]
+            
+            container.mainContext.insert(category)
         }
+        
         return container
     } catch {
         fatalError("Failed to create container")
