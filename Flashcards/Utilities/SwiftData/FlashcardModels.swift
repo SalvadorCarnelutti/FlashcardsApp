@@ -8,16 +8,17 @@
 import SwiftData
 
 // SwiftData enhances the model by automatically conferring it the PersistentModel conformance. This means that your model is now Identifiable, Observable, and Hashable.
+
 @Model
 final class Category {
     @Attribute(.unique) let name: String
     @Relationship(.cascade) var collections: [Collection]
-    let colorName: String?
+    let color: String
     
-    init(name: String, collections: [Collection], colorName: String?) {
+    init(name: String, collections: [Collection] = [], color: String) {
         self.name = name
         self.collections = collections
-        self.colorName = colorName
+        self.color = color
     }
 }
 

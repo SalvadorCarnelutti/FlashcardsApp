@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B49EB9992A8BEE2900D94D6E /* FlashcardColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EB9982A8BEE2900D94D6E /* FlashcardColor.swift */; };
 		B4E680332A899CBC008B1EAF /* FlashcardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680322A899CBC008B1EAF /* FlashcardsApp.swift */; };
 		B4E680352A899CBC008B1EAF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680342A899CBC008B1EAF /* HomeView.swift */; };
 		B4E680372A899CBD008B1EAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E680362A899CBD008B1EAF /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 		B4E6805F2A8A8411008B1EAF /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B4E6805E2A8A8411008B1EAF /* Localizable.xcstrings */; };
 		B4E680612A8A891F008B1EAF /* AddFlashcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680602A8A891F008B1EAF /* AddFlashcardView.swift */; };
 		B4E680652A8ADB8B008B1EAF /* FlashcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680642A8ADB8B008B1EAF /* FlashcardView.swift */; };
+		B4E680672A8ADCB7008B1EAF /* AddCategoryForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680662A8ADCB7008B1EAF /* AddCategoryForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B49EB9982A8BEE2900D94D6E /* FlashcardColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardColor.swift; sourceTree = "<group>"; };
 		B4E6802F2A899CBC008B1EAF /* Flashcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashcards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E680322A899CBC008B1EAF /* FlashcardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsApp.swift; sourceTree = "<group>"; };
 		B4E680342A899CBC008B1EAF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 		B4E6805E2A8A8411008B1EAF /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		B4E680602A8A891F008B1EAF /* AddFlashcardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFlashcardView.swift; sourceTree = "<group>"; };
 		B4E680642A8ADB8B008B1EAF /* FlashcardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardView.swift; sourceTree = "<group>"; };
+		B4E680662A8ADCB7008B1EAF /* AddCategoryForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B49EB9972A8BEE1600D94D6E /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				B49EB9982A8BEE2900D94D6E /* FlashcardColor.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		B4E680262A899CBC008B1EAF = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +117,7 @@
 				B4E680622A8ADB0A008B1EAF /* Utilities */,
 				B4E680322A899CBC008B1EAF /* FlashcardsApp.swift */,
 				B4E680342A899CBC008B1EAF /* HomeView.swift */,
+				B4E680662A8ADCB7008B1EAF /* AddCategoryForm.swift */,
 				B4E680602A8A891F008B1EAF /* AddFlashcardView.swift */,
 				B4E680642A8ADB8B008B1EAF /* FlashcardView.swift */,
 				B4E680362A899CBD008B1EAF /* Assets.xcassets */,
@@ -142,6 +155,7 @@
 		B4E680622A8ADB0A008B1EAF /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				B49EB9972A8BEE1600D94D6E /* Enums */,
 				B4E680632A8ADB10008B1EAF /* SwiftData */,
 			);
 			path = Utilities;
@@ -290,7 +304,9 @@
 				B4E680652A8ADB8B008B1EAF /* FlashcardView.swift in Sources */,
 				B4E680612A8A891F008B1EAF /* AddFlashcardView.swift in Sources */,
 				B4E6803C2A899CBD008B1EAF /* FlashcardModels.swift in Sources */,
+				B49EB9992A8BEE2900D94D6E /* FlashcardColor.swift in Sources */,
 				B4E680332A899CBC008B1EAF /* FlashcardsApp.swift in Sources */,
+				B4E680672A8ADCB7008B1EAF /* AddCategoryForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

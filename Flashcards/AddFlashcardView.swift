@@ -19,7 +19,7 @@ import Observation
 }
 
 struct AddFlashcardView: View {
-    @Bindable var addFlashcardViewModel: AddFlashcardViewModel
+    var addFlashcardViewModel: AddFlashcardViewModel
     @Environment(\.modelContext) private var modelContext
     
     var body: some View {

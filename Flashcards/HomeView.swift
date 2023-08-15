@@ -11,12 +11,18 @@ import SwiftData
 struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \.name) private var categories: [Category]
+    @State var isFormPresented: Bool = false
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(categories) { category in
-                    Text(category.name)
+                    HStack {
+                        Text(category.name)
+                            .font(.title2)
+                        Image(systemName: "rectangle.fill")
+                            .foregroundStyle(FlashcardColor(rawValue: category.color)!.color)
+                    }
                 }
                 .onDelete(perform: deleteItems)
             }
@@ -25,11 +31,12 @@ struct HomeView: View {
                     EditButton()
                 }
                 ToolbarItem {
-                    NavigationLink(destination: AddFlashcardView(addFlashcardViewModel: AddFlashcardViewModel())) {
+                    Button(action: toggleForm) {
                         Label("Add category", systemImage: "plus")
                     }
                 }
             }
+            .navigationTitle("Home")
             .overlay {
                 if categories.isEmpty {
                     ContentUnavailableView {
@@ -39,6 +46,9 @@ struct HomeView: View {
                     }
                 }
             }
+            .sheet(isPresented: $isFormPresented, content: {
+                AddCategoryForm()
+            })
             Text("Select a flashcard")
         }
     }
@@ -50,9 +60,18 @@ struct HomeView: View {
             }
         }
     }
+    
+    func toggleForm() {
+        isFormPresented.toggle()
+    }
 }
 
-#Preview {
+#Preview("Empty") {
+    HomeView()
+        .modelContainer(for: Category.self, inMemory: true)
+}
+
+#Preview("Non empty") {
     HomeView()
         .modelContainer(for: Category.self, inMemory: true)
 }
