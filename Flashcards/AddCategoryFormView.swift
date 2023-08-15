@@ -1,5 +1,5 @@
 //
-//  AddCategoryForm.swift
+//  AddCategoryFormView.swift
 //  Flashcards
 //
 //  Created by Salvador on 8/14/23.
@@ -23,7 +23,7 @@ import Observation
     }
 }
 
-struct AddCategoryForm: View {
+struct AddCategoryFormView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     
@@ -86,5 +86,5 @@ struct AddCategoryForm: View {
 }
 
 #Preview {
-    AddCategoryForm(addCategoryFormViewModel: AddCategoryFormViewModel())
+    AddCategoryFormView(addCategoryFormViewModel: AddCategoryFormViewModel())
 }

@@ -49,7 +49,7 @@ struct HomeView: View {
                 }
             }
             .sheet(isPresented: $isFormPresented, content: {
-                AddCategoryForm(addCategoryFormViewModel: AddCategoryFormViewModel())
+                AddCategoryFormView(addCategoryFormViewModel: AddCategoryFormViewModel())
             })
             Text("Select a flashcard")
         }
