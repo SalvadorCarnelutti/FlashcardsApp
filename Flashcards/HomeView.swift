@@ -19,7 +19,6 @@ struct HomeView: View {
                 ForEach(categories) { category in
                     HStack {
                         Text(category.name)
-                            .font(.title2)
                         Image(systemName: "rectangle.fill")
                             .foregroundStyle(FlashcardColor(rawValue: category.color)!.color)
                     }
@@ -47,7 +46,7 @@ struct HomeView: View {
                 }
             }
             .sheet(isPresented: $isFormPresented, content: {
-                AddCategoryForm()
+                AddCategoryForm(addCategoryFormViewModel: AddCategoryFormViewModel())
             })
             Text("Select a flashcard")
         }
@@ -72,6 +71,8 @@ struct HomeView: View {
 }
 
 #Preview("Non empty") {
-    HomeView()
-        .modelContainer(for: Category.self, inMemory: true)
+    MainActor.assumeIsolated {
+        HomeView()
+            .modelContainer(previewContainer)
+    }
 }

@@ -7,6 +7,21 @@
 
 import SwiftUI
 import SwiftData
+import Observation
+
+@Observable final class AddCategoryFormViewModel {
+    var categoryName: String = ""
+    var categoryColor = FlashcardColor.clear
+    
+    init(categoryName: String = "", categoryColor: FlashcardColor = FlashcardColor.clear) {
+        self.categoryName = categoryName
+        self.categoryColor = categoryColor
+    }
+    
+    var getCategory: Category {
+        Category(name: categoryName, color: categoryColor.rawValue)
+    }
+}
 
 struct AddCategoryForm: View {
     @Environment(\.modelContext) private var modelContext
@@ -15,19 +30,19 @@ struct AddCategoryForm: View {
     @Query private var categories: [Category]
     
     @State private var isAlertPresented: Bool = false
-    @State private var categoryName: String = ""
-    @State private var categoryColor = FlashcardColor.clear
+    
+    @Bindable var addCategoryFormViewModel: AddCategoryFormViewModel
     
     var body: some View {
         Form {
             Section("Name") {
-                TextField(text: $categoryName) {
+                TextField(text: $addCategoryFormViewModel.categoryName) {
                     Text("Category name")
                 }
             }
             
             Section("Card's associated color") {
-                Picker("Set color", selection: $categoryColor) {
+                Picker("Set color", selection: $addCategoryFormViewModel.categoryColor) {
                     ForEach(FlashcardColor.allCases, id: \.self) { flashcardColor in
                         HStack() {
                             if flashcardColor == .clear {
@@ -49,7 +64,7 @@ struct AddCategoryForm: View {
             Button(action: addCategory) {
                 Text("Add category")
             }
-            .disabled(categoryName.isEmpty)
+            .disabled(addCategoryFormViewModel.categoryName.isEmpty)
         }
         .alert(isPresented: $isAlertPresented) {
             Alert(title: Text("Category name already exists"),
@@ -58,17 +73,18 @@ struct AddCategoryForm: View {
     }
     
     func addCategory() {
-        guard !categories.map({ $0.name }).contains(categoryName) else {
+        let model = addCategoryFormViewModel.getCategory
+        
+        guard !categories.map({ $0.name }).contains(model.name) else {
             isAlertPresented = true
             return
         }
         
-        let model = Category(name: categoryName, color: categoryColor.rawValue)
         modelContext.insert(model)
         dismiss()
     }
 }
 
 #Preview {
-    AddCategoryForm()
+    AddCategoryForm(addCategoryFormViewModel: AddCategoryFormViewModel())
 }

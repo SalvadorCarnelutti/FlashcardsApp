@@ -16,6 +16,10 @@ import Observation
     let flashcardAnswerViewModel = FlashcardViewModel(text: "Sample Back",
                                                       side: "BACK",
                                                       color: .yellow)
+    
+    var getFlashcard: Flashcard {
+        Flashcard(prompt: flashcardPromptViewModel.text, answer: flashcardAnswerViewModel.text)
+    }
 }
 
 struct AddFlashcardView: View {
@@ -39,8 +43,7 @@ struct AddFlashcardView: View {
     }
     
     func addCard() {
-        let model = Flashcard(prompt: addFlashcardViewModel.flashcardPromptViewModel.text,
-                              answer: addFlashcardViewModel.flashcardAnswerViewModel.text)
+        let model = addFlashcardViewModel.getFlashcard
         
         modelContext.insert(model)
     }
