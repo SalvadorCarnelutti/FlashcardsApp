@@ -11,31 +11,52 @@ import SwiftData
 struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Category.name) private var categories: [Category]
+    @Query(filter: #Predicate<Collection> { $0.category == nil }) private var collections: [Collection]
     @State var isFormPresented: Bool = false
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(categories) { category in
-                    HStack {
-                        Text(category.name)
-                        Image(systemName: "rectangle.fill")
-                            .foregroundStyle(FlashcardColor(rawValue: category.color)!.color)
+                    Section {
+                        ForEach(category.collections) { collection in
+                            HStack {
+                                Text(collection.name)
+//                                Image(systemName: "rectangle.fill")
+//                                    .foregroundStyle(FlashcardColor(rawValue: category.color)!.color)
+                            }
+                        }
+                        .onDelete(perform: deleteItems)
+                    } header: {
+                        HStack{
+                            Text(category.name)
+                            Image(systemName: "rectangle.fill")
+                                .foregroundStyle(FlashcardColor(rawValue: category.color)!.color)
+                        }
+
                     }
                 }
-                .onDelete(perform: deleteItems)
+                
+                Section {
+                    ForEach(collections) { collection in
+                        HStack {
+                            Text(collection.name)
+                        }
+                    }
+                    .onDelete(perform: deleteItems)
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
                 ToolbarItem {
-                    NavigationLink(destination: AddFlashcardView()) {
-                        Label("Add category", systemImage: "plus")
-                    }
-//                    Button(action: toggleForm) {
+//                    NavigationLink(destination: AddFlashcardView()) {
 //                        Label("Add category", systemImage: "plus")
 //                    }
+                    Button(action: toggleForm) {
+                        Label("Add category", systemImage: "plus")
+                    }
                 }
             }
             .navigationTitle("Home")
@@ -49,7 +70,8 @@ struct HomeView: View {
                 }
             }
             .sheet(isPresented: $isFormPresented, content: {
-                AddCategoryFormView(addCategoryFormViewModel: AddCategoryFormViewModel())
+                AddCollectionFormView(addCollectionFormViewModel: AddCollectionFormViewModel())
+//                AddCategoryFormView(addCategoryFormViewModel: AddCategoryFormViewModel())
             })
             Text("Select a flashcard")
         }

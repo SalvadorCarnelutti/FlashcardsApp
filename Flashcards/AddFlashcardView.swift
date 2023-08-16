@@ -10,12 +10,12 @@ import Observation
 
 final class AddFlashcardViewModel: ObservableObject {
     @Published var flashcardPromptViewModel = FlashcardViewModel(text: "Sample Front",
-                                                      side: "FRONT",
-                                                      color: .cyan)
+                                                                 side: "FRONT",
+                                                                 color: .cyan)
     
     @Published var flashcardAnswerViewModel = FlashcardViewModel(text: "Sample Back",
-                                                      side: "BACK",
-                                                      color: .yellow)
+                                                                 side: "BACK",
+                                                                 color: .yellow)
     
     var getFlashcard: Flashcard {
         Flashcard(prompt: flashcardPromptViewModel.text,

@@ -25,7 +25,7 @@ final class Category {
 final class Collection {
     @Attribute(.unique) let name: String
     @Relationship(deleteRule: .cascade) var flashcards: [Flashcard]
-    let category: Category?
+    var category: Category?
     
     init(name: String, flashcards: [Flashcard] = [], category: Category? = nil) {
         self.name = name

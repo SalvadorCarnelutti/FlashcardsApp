@@ -13,11 +13,6 @@ import Observation
     var categoryName: String = ""
     var categoryColor = FlashcardColor.clear
     
-    init(categoryName: String = "", categoryColor: FlashcardColor = FlashcardColor.clear) {
-        self.categoryName = categoryName
-        self.categoryColor = categoryColor
-    }
-    
     var getCategory: Category {
         Category(name: categoryName, color: categoryColor.rawValue)
     }
@@ -67,7 +62,7 @@ struct AddCategoryFormView: View {
             .disabled(addCategoryFormViewModel.categoryName.isEmpty)
         }
         .alert(isPresented: $isAlertPresented) {
-            Alert(title: Text("Category name already exists"),
+            Alert(title: Text("Collection name already exists"),
                   message: Text("Choose a different name"))
         }
     }
