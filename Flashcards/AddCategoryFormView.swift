@@ -25,35 +25,52 @@ struct AddCategoryFormView: View {
     @Query private var categories: [Category]
     
     @State private var isAlertPresented: Bool = false
+    @State var showsPicker: Bool = false
     
     @Bindable var addCategoryFormViewModel: AddCategoryFormViewModel
     
     var body: some View {
         Form {
-            Section("Name") {
+            Section() {
                 TextField(text: $addCategoryFormViewModel.categoryName) {
                     Text("Category name")
                 }
-            }
-            
-            Section("Card's associated color") {
-                Picker("Set color", selection: $addCategoryFormViewModel.categoryColor) {
-                    ForEach(FlashcardColor.allCases, id: \.self) { flashcardColor in
-                        HStack() {
-                            if flashcardColor == .clear {
-                                Text(flashcardColor.rawValue.capitalized)
-                            } else {
-                                Text(flashcardColor.rawValue.capitalized)
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                                Image(systemName: "rectangle.fill")
-                                    .foregroundStyle(flashcardColor.color)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                LabeledContent("Category color") {
+                    if addCategoryFormViewModel.categoryColor != .clear {
+                        Text(addCategoryFormViewModel.categoryColor.rawValue.capitalized)
+                        Image(systemName: "rectangle.fill")
+                            .foregroundStyle(addCategoryFormViewModel.categoryColor.color)
+                    } else {
+                        Text(addCategoryFormViewModel.categoryColor.rawValue.capitalized)
+                    }
+                }
+                .onTapGesture {
+                    showsPicker.toggle()
+                }
+                if showsPicker {
+                    Picker("Set color", selection: $addCategoryFormViewModel.categoryColor) {
+                        ForEach(FlashcardColor.allCases, id: \.self) { flashcardColor in
+                            HStack() {
+                                if flashcardColor == .clear {
+                                    Text(flashcardColor.rawValue.capitalized)
+                                } else {
+                                    Text(flashcardColor.rawValue.capitalized)
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                    Image(systemName: "rectangle.fill")
+                                        .foregroundStyle(flashcardColor.color)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
                             }
                         }
                     }
+                    .pickerStyle(.wheel)
+                    
+                    Button("Done") {
+                        showsPicker.toggle()
+                    }
+                    .buttonStyle(.borderless)
                 }
-                .pickerStyle(.wheel)
-
             }
             
             Button(action: addCategory) {
