@@ -25,6 +25,12 @@
     "Collection name already exists" : {
 
     },
+    "Fill both flashcards" : {
+
+    },
+    "Flashcard contents can't be empty" : {
+
+    },
     "Home" : {
 
     },

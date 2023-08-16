@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EditableFlashcardView: View {
     @ObservedObject var flashcardViewModel: FlashcardViewModel
+    @FocusState var focusedField: FlashcardSide?
     
     var body: some View {
         VStack {
@@ -19,9 +20,10 @@ struct EditableFlashcardView: View {
                     Spacer()
                 }
                 HStack {
-                    TextField(flashcardViewModel.text,
+                    TextField(flashcardViewModel.placeholder,
                               text: $flashcardViewModel.text,
                               axis: .vertical)
+                    .focused($focusedField, equals: flashcardViewModel.flashcardSide)
                     .multilineTextAlignment(.center)
                     .lineLimit(3, reservesSpace: true)
                     .font(.title3)
@@ -39,9 +41,7 @@ struct EditableFlashcardView: View {
 }
 
 #Preview {
-    let flashcardViewModel = FlashcardViewModel(text: "Sample Front",
-                                                side: "FRONT",
-                                                color: .cyan)
+    let flashcardViewModel = FlashcardViewModel(flashcardSide: .front)
     
     return EditableFlashcardView(flashcardViewModel: flashcardViewModel)
 }

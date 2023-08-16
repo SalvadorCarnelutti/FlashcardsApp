@@ -51,12 +51,12 @@ struct HomeView: View {
                     EditButton()
                 }
                 ToolbarItem {
-//                    NavigationLink(destination: AddFlashcardView()) {
-//                        Label("Add category", systemImage: "plus")
-//                    }
-                    Button(action: toggleForm) {
+                    NavigationLink(destination: AddFlashcardView()) {
                         Label("Add category", systemImage: "plus")
                     }
+//                    Button(action: toggleForm) {
+//                        Label("Add category", systemImage: "plus")
+//                    }
                 }
             }
             .navigationTitle("Home")

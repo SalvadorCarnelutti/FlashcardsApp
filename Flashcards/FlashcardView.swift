@@ -41,9 +41,7 @@ struct FlashcardView: View {
 }
 
 #Preview {
-    let flashcardViewModel = FlashcardViewModel(text: "What's the biggest native bird in America?",
-                                                side: "FRONT",
-                                                color: .red)
+    let flashcardViewModel = FlashcardViewModel(flashcardSide: .front)
     
     return FlashcardView(flashcardViewModel: flashcardViewModel)
 }
