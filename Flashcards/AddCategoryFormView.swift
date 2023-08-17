@@ -28,6 +28,7 @@ struct AddCategoryFormView: View {
     @State var showsPicker: Bool = false
     
     @Bindable var addCategoryFormViewModel: AddCategoryFormViewModel
+    @FocusState private var categoryNameFieldIsFocused: Bool
     
     var body: some View {
         Form {
@@ -35,18 +36,21 @@ struct AddCategoryFormView: View {
                 TextField(text: $addCategoryFormViewModel.categoryName) {
                     Text("Category name")
                 }
+                .focused($categoryNameFieldIsFocused)
                 
                 LabeledContent("Category color") {
+                    Text(addCategoryFormViewModel.categoryColor.rawValue.capitalized)
                     if addCategoryFormViewModel.categoryColor != .clear {
-                        Text(addCategoryFormViewModel.categoryColor.rawValue.capitalized)
                         Image(systemName: "rectangle.fill")
                             .foregroundStyle(addCategoryFormViewModel.categoryColor.color)
                     } else {
-                        Text(addCategoryFormViewModel.categoryColor.rawValue.capitalized)
+                        EmptyView()
                     }
                 }
                 .onTapGesture {
-                    showsPicker.toggle()
+                    withAnimation {
+                        showsPicker.toggle()
+                    }
                 }
                 if showsPicker {
                     Picker("Set color", selection: $addCategoryFormViewModel.categoryColor) {
@@ -67,7 +71,9 @@ struct AddCategoryFormView: View {
                     .pickerStyle(.wheel)
                     
                     Button("Done") {
-                        showsPicker.toggle()
+                        withAnimation {
+                            showsPicker.toggle()
+                        }
                     }
                     .buttonStyle(.borderless)
                 }
@@ -81,6 +87,9 @@ struct AddCategoryFormView: View {
         .alert(isPresented: $isAlertPresented) {
             Alert(title: Text("Collection name already exists"),
                   message: Text("Choose a different name"))
+        }
+        .onAppear {
+            categoryNameFieldIsFocused = true
         }
     }
     
