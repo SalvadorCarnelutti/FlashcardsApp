@@ -8,25 +8,15 @@
 import SwiftData
 
 struct SampleDeck {
-    static var contents: [Category] {
-        let categories = [
-            Category(name: "Math", color: "blue"),
-            Category(name: "Science", color: "green"),
-            Category(name: "Japanese", color: "purple"),
-        ]
-        
-        for category in categories {
-            let collection = Collection(name: "Scientist")
-            let flashcard = Flashcard(prompt: "Who did X?", answer: "X was done by Y", collection: collection)
-            collection.flashcards.append(flashcard)
-            
-            category.collections.append(collection)
-        }
-        
-        return categories
-    }
+    static var categories: [Category] = [
+        Category(name: "Math", color: "blue"),
+        Category(name: "Science", color: "green"),
+        Category(name: "Japanese", color: "purple"),
+    ]
     
-    static var collection: Collection {
-        Collection(name: "Scientist")
-    }
+    static var collections: [Collection] = [
+        Collection(name: "Beginner"),
+        Collection(name: "Intermediate"),
+        Collection(name: "Advanced")
+    ]
 }

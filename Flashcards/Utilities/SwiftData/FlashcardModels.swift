@@ -10,7 +10,7 @@ import SwiftData
 // SwiftData enhances the model by automatically conferring it the PersistentModel conformance. This means that your model is now Identifiable, Observable, and Hashable.
 @Model
 final class Category {
-    @Attribute(.unique) let name: String
+    @Attribute(.unique) var name: String
     @Relationship(deleteRule: .cascade) var collections: [Collection]
     let color: String
     
@@ -23,7 +23,7 @@ final class Category {
 
 @Model
 final class Collection {
-    @Attribute(.unique) let name: String
+    @Attribute(.unique) var name: String
     @Relationship(deleteRule: .cascade) var flashcards: [Flashcard]
     var category: Category?
     
@@ -32,13 +32,15 @@ final class Collection {
         self.flashcards = flashcards
         self.category = category
     }
+    
+    func addFlashcard(_ flashcard: Flashcard) { flashcards.append(flashcard) }
 }
 
 @Model
 final class Flashcard {
-    let prompt: String
-    let answer: String
-    let collection: Collection
+    var prompt: String
+    var answer: String
+    var collection: Collection
     
     init(prompt: String, answer: String, collection: Collection) {
         self.prompt = prompt

@@ -14,15 +14,14 @@ let previewContainer: ModelContainer = {
             for: Category.self, ModelConfiguration(inMemory: true)
         )
         
-        for category in SampleDeck.contents {
-            let collection = Collection(name: "Scientist")
-            container.mainContext.insert(collection)
-            
-            let flashcard = Flashcard(prompt: "Who did X?", answer: "X was done by Y", collection: collection)
-            collection.flashcards.append(flashcard)
-            
-            category.collections = [collection]
-            
+        for category in SampleDeck.categories {
+            for collection in SampleDeck.collections {
+                container.mainContext.insert(collection)
+                
+                let flashcard = Flashcard(prompt: "Who did X?", answer: "X was done by Y", collection: collection)
+                container.mainContext.insert(flashcard)
+                collection.flashcards.append(flashcard)
+            }
             container.mainContext.insert(category)
         }
         
