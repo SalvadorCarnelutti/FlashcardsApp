@@ -25,6 +25,7 @@ struct AddCollectionFormView: View {
     @State private var isAlertPresented: Bool = false
     
     @Bindable var addCollectionFormViewModel: AddCollectionFormViewModel
+    @FocusState private var collectionNameFieldIsFocused: Bool
     
     var body: some View {
         Form {
@@ -32,16 +33,20 @@ struct AddCollectionFormView: View {
                 TextField(text: $addCollectionFormViewModel.collectionName) {
                     Text("Collection name")
                 }
+                .focused($collectionNameFieldIsFocused)
             }
             
             Button(action: addCollection) {
-                Text("Add category")
+                Text("Add collection")
             }
             .disabled(addCollectionFormViewModel.collectionName.isEmpty)
         }
         .alert(isPresented: $isAlertPresented) {
             Alert(title: Text("Category name already exists"),
                   message: Text("Choose a different name"))
+        }
+        .onAppear {
+            collectionNameFieldIsFocused = true
         }
     }
     
