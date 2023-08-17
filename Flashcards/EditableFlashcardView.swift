@@ -12,7 +12,7 @@ struct EditableFlashcardView: View {
     @FocusState var focusedField: FlashcardSide?
     
     var body: some View {
-        VStack {
+        CardContainerView {
             VStack {
                 HStack {
                     Text(flashcardViewModel.side)
@@ -34,7 +34,6 @@ struct EditableFlashcardView: View {
             }
             .padding()
             .background(flashcardViewModel.color.opacity(0.7))
-            .clipShape(RoundedRectangle(cornerRadius: 8))
         }
         .padding()
     }

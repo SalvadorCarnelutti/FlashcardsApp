@@ -11,7 +11,7 @@ struct FlashcardView: View {
     let flashcardViewModel: FlashcardViewModel
     
     var body: some View {
-        VStack {
+        CardContainerView {
             VStack {
                 HStack {
                     Text(flashcardViewModel.side)
@@ -34,7 +34,6 @@ struct FlashcardView: View {
             }
             .padding()
             .background(flashcardViewModel.color.opacity(0.7))
-            .clipShape(RoundedRectangle(cornerRadius: 8))
         }
         .padding()
     }
