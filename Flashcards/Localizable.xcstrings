@@ -1,13 +1,25 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Add Card" : {
+
+    },
     "Add category" : {
+
+    },
+    "Add collection" : {
 
     },
     "Add flashcard" : {
 
     },
-    "Card's associated color" : {
+    "Both sides must be filled" : {
+
+    },
+    "Category" : {
+
+    },
+    "Category color" : {
 
     },
     "Category name" : {
@@ -25,22 +37,19 @@
     "Collection name already exists" : {
 
     },
-    "Fill both flashcards" : {
+    "Decks" : {
 
     },
-    "Flashcard contents can't be empty" : {
+    "Done" : {
 
     },
-    "Home" : {
+    "Fill missing contents" : {
 
     },
     "Name" : {
 
     },
     "No flashcards at the moment" : {
-
-    },
-    "Select a flashcard" : {
 
     },
     "Set color" : {
