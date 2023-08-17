@@ -56,10 +56,8 @@ struct AddFlashcardView: View {
             Button(action: addCard) {
                 Text("Add flashcard")
                     .padding()
-                    .background(.blue)
-                    .clipShape(Capsule())
-                    .foregroundStyle(.white)
             }
+            .buttonStyle(.borderedProminent)
         }
         .padding()
         .alert(isPresented: $isAlertPresented) {
