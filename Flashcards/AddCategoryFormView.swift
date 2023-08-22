@@ -14,7 +14,7 @@ import Observation
     var categoryColor = FlashcardColor.clear
     
     var getCategory: Category {
-        Category(name: categoryName, color: categoryColor.rawValue)
+        Category(name: categoryName.capitalized, color: categoryColor.rawValue)
     }
 }
 
@@ -24,88 +24,91 @@ struct AddCategoryFormView: View {
     
     @Query private var categories: [Category]
     
-    @State private var isAlertPresented: Bool = false
-    @State var showsPicker: Bool = false
+    @State var isFormPresented: Bool = false
+    @Binding var isAlertPresented: Bool
+    @Binding var isPresented: Bool
     
     @Bindable var addCategoryFormViewModel: AddCategoryFormViewModel
     @FocusState private var categoryNameFieldIsFocused: Bool
     
+    let addAction: ((Category) -> Void)
+    
     var body: some View {
-        Form {
-            Section() {
-                TextField(text: $addCategoryFormViewModel.categoryName) {
-                    Text("Category name")
-                }
-                .focused($categoryNameFieldIsFocused)
-                
-                LabeledContent("Category color") {
-                    Text(addCategoryFormViewModel.categoryColor.rawValue.capitalized)
-                    if addCategoryFormViewModel.categoryColor != .clear {
-                        Image(systemName: "rectangle.fill")
-                            .foregroundStyle(addCategoryFormViewModel.categoryColor.color)
-                    } else {
-                        EmptyView()
-                    }
-                }
-                .onTapGesture {
-                    withAnimation {
-                        showsPicker.toggle()
-                    }
-                }
-                if showsPicker {
-                    Picker("Set color", selection: $addCategoryFormViewModel.categoryColor) {
-                        ForEach(FlashcardColor.allCases, id: \.self) { flashcardColor in
-                            HStack() {
-                                if flashcardColor == .clear {
-                                    Text(flashcardColor.rawValue.capitalized)
-                                } else {
-                                    Text(flashcardColor.rawValue.capitalized)
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                    Image(systemName: "rectangle.fill")
-                                        .foregroundStyle(flashcardColor.color)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                }
-                            }
-                        }
-                    }
-                    .pickerStyle(.wheel)
-                    
-                    Button("Done") {
-                        withAnimation {
-                            showsPicker.toggle()
-                        }
-                    }
-                    .buttonStyle(.borderless)
-                }
+        HStack {
+            Button("Add") {
+                addAction(addCategoryFormViewModel.getCategory)
             }
-            
-            Button(action: addCategory) {
-                Text("Add category")
-            }
+            .frame(maxWidth: .infinity, alignment: .trailing)
             .disabled(addCategoryFormViewModel.categoryName.isEmpty)
         }
-        .alert(isPresented: $isAlertPresented) {
-            Alert(title: Text("Collection name already exists"),
-                  message: Text("Choose a different name"))
+        TextField(text: $addCategoryFormViewModel.categoryName) {
+            Text("Category name")
+        }
+        .focused($categoryNameFieldIsFocused)
+        
+        LabeledContent("Category color") {
+            Text(addCategoryFormViewModel.categoryColor.rawValue.capitalized)
+            
+            if addCategoryFormViewModel.categoryColor != .clear {
+                Image(systemName: "rectangle.fill")
+                    .foregroundStyle(addCategoryFormViewModel.categoryColor.color)
+            } else {
+                EmptyView()
+            }
+        }
+        
+        Picker("Set color", selection: $addCategoryFormViewModel.categoryColor) {
+            ForEach(FlashcardColor.allCases) { flashcardColor in
+                HStack() {
+                    if flashcardColor == .clear {
+                        Text(flashcardColor.rawValue.capitalized)
+                    } else {
+                        Text(flashcardColor.rawValue.capitalized)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                        Image(systemName: "rectangle.fill")
+                            .foregroundStyle(flashcardColor.color)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+            }
+        }
+        .pickerStyle(.wheel)
+        
+        HStack {
+            Button("Cancel") {
+                dismiss()
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
         .onAppear {
             categoryNameFieldIsFocused = true
         }
-    }
-    
-    func addCategory() {
-        let model = addCategoryFormViewModel.getCategory
-        
-        guard !categories.map({ $0.name }).contains(model.name) else {
-            isAlertPresented = true
-            return
+        .alert(isPresented: $isAlertPresented) {
+            Alert(title: Text("Category name already exists"),
+                  message: Text("Choose a different name"))
         }
-        
-        modelContext.insert(model)
-        dismiss()
     }
 }
 
-#Preview {
-    AddCategoryFormView(addCategoryFormViewModel: AddCategoryFormViewModel())
+//#Preview {
+//    AddCategoryFormView(addCategoryFormViewModel: AddCategoryFormViewModel())
+//}
+
+// TODO: Once SwiftData preview get fixed add preview
+struct ChooseCategoryPicker: View {
+    let selectedIndex: Binding<Int>
+    let categories: [Category]
+    
+    var body: some View {
+        Picker("Select category", selection: selectedIndex) {
+            ForEach(Array(categories.enumerated()), id: \.element) { index, category in
+                HStack {
+                    Text(category.name.capitalized)
+                    Image(systemName: "rectangle.fill")
+                        .foregroundStyle(FlashcardColor(rawValue: category.color)!.color)
+                }.tag(index)
+            }
+        }.id(categories)
+            .pickerStyle(.navigationLink)
+    }
 }

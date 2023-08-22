@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Add" : {
+
+    },
     "Add Card" : {
 
     },
@@ -13,10 +16,19 @@
     "Add flashcard" : {
 
     },
+    "Add new category" : {
+
+    },
     "Both sides must be filled" : {
 
     },
+    "Cancel" : {
+
+    },
     "Category" : {
+
+    },
+    "Category (Optional)" : {
 
     },
     "Category color" : {
@@ -40,9 +52,6 @@
     "Decks" : {
 
     },
-    "Done" : {
-
-    },
     "Fill missing contents" : {
 
     },
@@ -52,7 +61,13 @@
     "No flashcards at the moment" : {
 
     },
+    "Select category" : {
+
+    },
     "Set color" : {
+
+    },
+    "Skip" : {
 
     },
     "Start adding on the top-right" : {

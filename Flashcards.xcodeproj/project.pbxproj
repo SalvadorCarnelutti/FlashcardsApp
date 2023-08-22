@@ -16,6 +16,8 @@
 		B4A257CE2A8D1C6D00D2C995 /* FlashcardSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257CD2A8D1C6D00D2C995 /* FlashcardSide.swift */; };
 		B4A257D12A8D3B1D00D2C995 /* CardContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257D02A8D3B1D00D2C995 /* CardContainer.swift */; };
 		B4A257D32A8D40AB00D2C995 /* CardGalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257D22A8D40AB00D2C995 /* CardGalleryItem.swift */; };
+		B4A257D92A8FDAC400D2C995 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257D82A8FDAC400D2C995 /* String.swift */; };
+		B4A257DB2A9274A400D2C995 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257DA2A9274A400D2C995 /* Array.swift */; };
 		B4E680332A899CBC008B1EAF /* FlashcardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680322A899CBC008B1EAF /* FlashcardsApp.swift */; };
 		B4E680352A899CBC008B1EAF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680342A899CBC008B1EAF /* HomeView.swift */; };
 		B4E680372A899CBD008B1EAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E680362A899CBD008B1EAF /* Assets.xcassets */; };
@@ -57,6 +59,8 @@
 		B4A257CD2A8D1C6D00D2C995 /* FlashcardSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardSide.swift; sourceTree = "<group>"; };
 		B4A257D02A8D3B1D00D2C995 /* CardContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContainer.swift; sourceTree = "<group>"; };
 		B4A257D22A8D40AB00D2C995 /* CardGalleryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGalleryItem.swift; sourceTree = "<group>"; };
+		B4A257D82A8FDAC400D2C995 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		B4A257DA2A9274A400D2C995 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		B4E6802F2A899CBC008B1EAF /* Flashcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashcards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E680322A899CBC008B1EAF /* FlashcardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsApp.swift; sourceTree = "<group>"; };
 		B4E680342A899CBC008B1EAF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -123,6 +127,15 @@
 				B4A257D02A8D3B1D00D2C995 /* CardContainer.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B4A257D72A8FDAB800D2C995 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B4A257D82A8FDAC400D2C995 /* String.swift */,
+				B4A257DA2A9274A400D2C995 /* Array.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		B4E680262A899CBC008B1EAF = {
@@ -193,6 +206,7 @@
 		B4E680622A8ADB0A008B1EAF /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				B4A257D72A8FDAB800D2C995 /* Extensions */,
 				B4A257CF2A8D3B0100D2C995 /* Views */,
 				B49EB9972A8BEE1600D94D6E /* Enums */,
 				B4E680632A8ADB10008B1EAF /* SwiftData */,
@@ -343,6 +357,7 @@
 				B4A257D32A8D40AB00D2C995 /* CardGalleryItem.swift in Sources */,
 				B4A257CC2A8D0A6300D2C995 /* FlashcardsGalleryView.swift in Sources */,
 				B49EB99B2A8BEFF300D94D6E /* PreviewSampleData.swift in Sources */,
+				B4A257DB2A9274A400D2C995 /* Array.swift in Sources */,
 				B4E680352A899CBC008B1EAF /* HomeView.swift in Sources */,
 				B4A257D12A8D3B1D00D2C995 /* CardContainer.swift in Sources */,
 				B4E680652A8ADB8B008B1EAF /* EditableFlashcardView.swift in Sources */,
@@ -354,6 +369,7 @@
 				B49EB99D2A8BF00F00D94D6E /* SampleDeck.swift in Sources */,
 				B4A257C82A8C293600D2C995 /* FlashcardView.swift in Sources */,
 				B4E680332A899CBC008B1EAF /* FlashcardsApp.swift in Sources */,
+				B4A257D92A8FDAC400D2C995 /* String.swift in Sources */,
 				B4E680672A8ADCB7008B1EAF /* AddCategoryFormView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

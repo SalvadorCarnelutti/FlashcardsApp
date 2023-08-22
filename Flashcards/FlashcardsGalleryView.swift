@@ -46,7 +46,8 @@ struct FlashcardsGalleryView: View {
             .padding()
             
             LazyVGrid(columns: columns, spacing: 20) {
-                CardGalleryItem(backgroundStyle: .cyan, action: addFlashcard) {
+                // TODO: Card might not have a category remove force unwrapping
+                CardGalleryItem(backgroundStyle: FlashcardColor(rawValue: collection.category!.color)?.color ?? .cyan, action: addFlashcard) {
                     LabeledContent("Add Card") {
                         Image(systemName: "plus")
                             .imageScale(.large)
@@ -56,7 +57,7 @@ struct FlashcardsGalleryView: View {
                 .shadow(radius: 2)
                 
                 ForEach(flashcards) { flashcard in
-                    CardGalleryItem(backgroundStyle: .cyan) {
+                    CardGalleryItem(backgroundStyle: FlashcardColor(rawValue: collection.category!.color)?.color ?? .cyan) {
                         selectFlashcard(flashcard)
                     } label: {
                         Text(flashcard.prompt)
@@ -68,15 +69,10 @@ struct FlashcardsGalleryView: View {
     }
 }
 
-//#Preview {
-//    FlashcardsGalleryView(collection: Collection(name: "Japanese"))
-//}
-
-//#Preview {
-//    MainActor.assumeIsolated {
-//        FlashcardsGalleryView(collection: Collection(name: "Prueba"), selectFlashcard: { fllashcard in
-//            
-//        }, addFlashcard: {})
-//            .modelContainer(previewContainer)
-//    }
-//}
+#Preview {
+    MainActor.assumeIsolated {
+        FlashcardsGalleryView(collection: Collection(name: "Japanese"),
+                              selectFlashcard: { _ in },
+                              addFlashcard: {})
+    }
+}

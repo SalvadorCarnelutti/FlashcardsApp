@@ -30,7 +30,7 @@ struct HomeView: View {
                     Section {
                         ForEach(category.collections) { collection in
                             NavigationLink(value: Route.flashcardsGalleryView(collection)) {
-                                Text(collection.name)
+                                Text(collection.name.capitalized)
                             }
                         }
                         .onDelete { indexSet in
@@ -38,7 +38,7 @@ struct HomeView: View {
                         }
                     } header: {
                         HStack{
-                            Text(category.name)
+                            Text(category.name.capitalized)
                             Image(systemName: "rectangle.fill")
                                 .foregroundStyle(FlashcardColor(rawValue: category.color)!.color)
                         }
@@ -76,10 +76,12 @@ struct HomeView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isFormPresented, content: {
-                AddCollectionFormView(addCollectionFormViewModel: AddCollectionFormViewModel())
-//                AddCategoryFormView(addCategoryFormViewModel: AddCategoryFormViewModel())
-            })
+            .sheet(isPresented: $isFormPresented) {
+                AddCollectionFormView()
+//                AddCategoryFormView(addCategoryFormViewModel: AddCategoryFormViewModel(), addAction: { _ in })
+//                    .presentationDetents([.medium])
+//                    .padding()
+            }
             .navigationDestination(for: Route.self) { route in
                 switch route {
                 case let .flashcardsGalleryView(collection):
