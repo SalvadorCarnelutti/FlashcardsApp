@@ -31,12 +31,12 @@ struct AddCategoryFormView: View {
     @Bindable var addCategoryFormViewModel: AddCategoryFormViewModel
     @FocusState private var categoryNameFieldIsFocused: Bool
     
-    let addAction: ((Category) -> Void)
+    let addCategory: ((Category) -> Void)
     
     var body: some View {
         HStack {
             Button("Add") {
-                addAction(addCategoryFormViewModel.getCategory)
+                addCategory(addCategoryFormViewModel.getCategory)
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
             .disabled(addCategoryFormViewModel.categoryName.isEmpty)
@@ -90,9 +90,13 @@ struct AddCategoryFormView: View {
     }
 }
 
-//#Preview {
-//    AddCategoryFormView(addCategoryFormViewModel: AddCategoryFormViewModel())
-//}
+#Preview {
+    AddCategoryFormView(isAlertPresented: .constant(false),
+                        isPresented: .constant(true),
+                        addCategoryFormViewModel: AddCategoryFormViewModel(),
+                        addCategory: { _ in })
+    .padding()
+}
 
 // TODO: Once SwiftData preview get fixed add preview
 struct ChooseCategoryPicker: View {
@@ -104,8 +108,11 @@ struct ChooseCategoryPicker: View {
             ForEach(Array(categories.enumerated()), id: \.element) { index, category in
                 HStack {
                     Text(category.name.capitalized)
-                    Image(systemName: "rectangle.fill")
-                        .foregroundStyle(FlashcardColor(rawValue: category.color)!.color)
+                    // TODO: Maybe change in such a way I don't compare strings
+                    if category.color != "clear" {
+                        Image(systemName: "rectangle.fill")
+                            .foregroundStyle(FlashcardColor(rawValue: category.color)!.color)
+                    }
                 }.tag(index)
             }
         }.id(categories)

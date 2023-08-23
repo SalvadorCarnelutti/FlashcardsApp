@@ -36,7 +36,6 @@ struct AddCollectionFormView: View {
     @State var selectedIndex: Int = 0
     @State var isNewCategoryFormPresented: Bool = false
     @State var isCollectionAlertPresented: Bool = false
-    @State var isCategoryAlertPresented: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -52,15 +51,10 @@ struct AddCollectionFormView: View {
                     if categories.isNotEmpty {
                         Toggle("Skip", isOn: $skipsCategory)
                     }
-                    Group {
-                        if categories.isNotEmpty {
-                            ChooseCategoryPicker(selectedIndex: $selectedIndex,
-                                                 categories: categories)
-                        }
-                        Button(action: toggleNewCategory) {
-                            Text("Add new category")
-                        }
-                    }
+                    AddCollectionCategoryView(categories: categories,
+                                   isNewCategoryFormPresented: $isNewCategoryFormPresented,
+                                   addCategoryFormViewModel: AddCategoryFormViewModel(),
+                                   selectedIndex: $selectedIndex)
                     .disabled(skipsCategory)
                 }
                 
@@ -76,30 +70,7 @@ struct AddCollectionFormView: View {
                 Alert(title: Text("Collection name already exists"),
                       message: Text("Choose a different name"))
             }
-            .sheet(isPresented: $isNewCategoryFormPresented) {
-                AddCategoryFormView(isAlertPresented: $isCategoryAlertPresented,
-                                    isPresented: $isNewCategoryFormPresented,
-                                    addCategoryFormViewModel: addCategoryFormViewModel,
-                                    addAction: addCategory)
-                .presentationDetents([.medium])
-                .padding()
-            }
         }
-    }
-    
-    private func addCategory(category: Category) {
-        guard !categories.map({ $0.name }).contains(category.name) else {
-            isCategoryAlertPresented = true
-            return
-        }
-        
-        modelContext.insert(category)
-        
-        // Insertion is not immediate, collections take a moment to update
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25 , execute: {
-            selectedIndex = categories.firstIndex(of: category) ?? 0
-        })
-        isNewCategoryFormPresented = false
     }
     
     private func toggleNewCategory() {
@@ -126,4 +97,56 @@ struct AddCollectionFormView: View {
 
 #Preview {
     AddCollectionFormView()
+}
+
+struct AddCollectionCategoryView: View {
+    @Environment(\.modelContext) private var modelContext
+    let categories: [Category]
+    
+    @Binding var isNewCategoryFormPresented: Bool
+    let addCategoryFormViewModel: AddCategoryFormViewModel
+    @Binding var selectedIndex: Int
+    
+    @State var isCategoryAlertPresented: Bool = false
+    
+    var body: some View {
+        Group {
+            if categories.isNotEmpty {
+                ChooseCategoryPicker(selectedIndex: $selectedIndex,
+                                     categories: categories)
+            }
+            Button(action: toggleNewCategory) {
+                Text("Add new category")
+            }
+        }
+        .sheet(isPresented: $isNewCategoryFormPresented) {
+            AddCategoryFormView(isAlertPresented: $isCategoryAlertPresented,
+                                isPresented: $isNewCategoryFormPresented,
+                                addCategoryFormViewModel: addCategoryFormViewModel,
+                                addCategory: addCategory)
+            .presentationDetents([.medium])
+            .padding()
+        }
+    }
+    
+    private func toggleNewCategory() {
+        isNewCategoryFormPresented.toggle()
+    }
+    
+    private func addCategory(category: Category) {
+        guard !categories.map({ $0.name }).contains(category.name) else {
+            isCategoryAlertPresented = true
+            return
+        }
+        
+        withAnimation {
+            modelContext.insert(category)
+        }
+        
+        // Insertion is not immediate, collections take a moment to update
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25 , execute: {
+            selectedIndex = categories.firstIndex(of: category) ?? 0
+        })
+        isNewCategoryFormPresented = false
+    }
 }
