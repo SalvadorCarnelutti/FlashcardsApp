@@ -155,7 +155,7 @@ struct EditDeckCategoryView: View {
                         .presentationDetents([.medium])
                         .padding()
                     }
-                    // TODO: At the moment only a category get selected when tapping a different index, haven't found a stable to detect when the user taps the same index or just when navigation to the picker selection view
+                    // TODO: At the moment only a category gets selected when tapping a different index, haven't found a stable to detect when the user taps the same index or just when navigation to the picker selection view
                     .onChange(of: selectedIndex) {
                         deck.category = categories[selectedIndex]
                         dismiss()
