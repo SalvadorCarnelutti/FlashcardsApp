@@ -53,9 +53,9 @@ struct FlashcardsGalleryView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                 .shadow(radius: 3)
                 .overlay(alignment: .top) {
-                    Rectangle().frame(maxWidth: .infinity, maxHeight: 5, alignment: .top)
-                        .foregroundColor(FlashcardColor(rawValue: collection.category!.color)?.color ?? .cyan)
-                        .clipShape(UnevenRoundedRectangle(topLeadingRadius: 5/2, topTrailingRadius: 5/2))
+                    Rectangle().frame(maxWidth: .infinity, maxHeight: 7, alignment: .top)
+                        .foregroundColor(collection.flashcardBackgroundColor)
+                        .clipShape(UnevenRoundedRectangle(topLeadingRadius: 7, topTrailingRadius: 7))
                 }
                 .onTapGesture {
                     isEditCategoryFormPresented = true
@@ -65,7 +65,7 @@ struct FlashcardsGalleryView: View {
             
             LazyVGrid(columns: columns, spacing: 20) {
                 // TODO: Card might not have a category remove force unwrapping
-                CardGalleryItem(backgroundStyle: FlashcardColor(rawValue: collection.category!.color)?.color ?? .cyan, action: addFlashcard) {
+                CardGalleryItem(backgroundStyle: collection.flashcardBackgroundColor, action: addFlashcard) {
                     LabeledContent("Add Card") {
                         Image(systemName: "plus")
                             .imageScale(.large)
@@ -75,7 +75,7 @@ struct FlashcardsGalleryView: View {
                 .shadow(radius: 2)
                 
                 ForEach(flashcards) { flashcard in
-                    CardGalleryItem(backgroundStyle: FlashcardColor(rawValue: collection.category!.color)?.color ?? .cyan) {
+                    CardGalleryItem(backgroundStyle: collection.flashcardBackgroundColor) {
                         selectFlashcard(flashcard)
                     } label: {
                         Text(flashcard.prompt)
@@ -128,7 +128,11 @@ struct EditCollectionCategoryView: View {
         self.collection = collection
         self._isNewCategoryFormPresented = isNewCategoryFormPresented
         self.addCategoryFormViewModel = addCategoryFormViewModel
-        self._selectedIndex = State(initialValue: categories.firstIndex(of: collection.category!) ?? 0)
+        self._selectedIndex = if let category = collection.category {
+            State(initialValue: categories.firstIndex(of: category) ?? 0)
+        } else {
+            State(initialValue: 0)
+        }
     }
     
     var body: some View {

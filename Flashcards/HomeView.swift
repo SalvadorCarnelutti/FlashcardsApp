@@ -40,7 +40,7 @@ struct HomeView: View {
                         HStack{
                             Text(category.name.capitalized)
                             Image(systemName: "rectangle.fill")
-                                .foregroundStyle(FlashcardColor(rawValue: category.color)!.color)
+                                .foregroundStyle(FlashcardColor(rawValue: category.colorName)!.color)
                         }
                     }
                 }

@@ -109,9 +109,9 @@ struct ChooseCategoryPicker: View {
                 HStack {
                     Text(category.name.capitalized)
                     // TODO: Maybe change in such a way I don't compare strings
-                    if category.color != "clear" {
+                    if category.colorName != "clear" {
                         Image(systemName: "rectangle.fill")
-                            .foregroundStyle(FlashcardColor(rawValue: category.color)!.color)
+                            .foregroundStyle(FlashcardColor(rawValue: category.colorName)!.color)
                     }
                 }.tag(index)
             }
