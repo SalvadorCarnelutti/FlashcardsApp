@@ -13,7 +13,7 @@ struct FlashcardsGalleryView: View {
     @Query private var flashcards: [Flashcard]
     let columns = [GridItem(.adaptive(minimum: 150))]
     
-    @Bindable var collection: Collection
+    @Bindable var deck: Deck
     @Query(sort: \Category.name) private var categories: [Category]
     
     @State var isNewCategoryFormPresented: Bool = false
@@ -23,16 +23,16 @@ struct FlashcardsGalleryView: View {
     
     @State var isEditCategoryFormPresented: Bool = false
     
-    init(collection: Collection, selectFlashcard: @escaping (Flashcard) -> Void, addFlashcard: @escaping () -> Void) {
-        self.collection = collection
+    init(deck: Deck, selectFlashcard: @escaping (Flashcard) -> Void, addFlashcard: @escaping () -> Void) {
+        self.deck = deck
         self.selectFlashcard = selectFlashcard
         self.addFlashcard = addFlashcard
         
         // Workaround as of Xcode 15.6, SwiftData doesn't allow dynamic queries
-        let collectionName = collection.name
+        let deckName = deck.name
         
         let predicate = #Predicate<Flashcard> {
-            $0.collection.name == collectionName
+            $0.deck.name == deckName
         }
         
         _flashcards = Query(filter: predicate, sort: \Flashcard.prompt)
@@ -45,7 +45,7 @@ struct FlashcardsGalleryView: View {
                     Rectangle()
                         .foregroundStyle(.clear)
                     LabeledContent("Category") {
-                        Text(collection.category?.name ?? "None")
+                        Text(deck.category?.name ?? "None")
                     }
                 }
                 .padding()
@@ -54,7 +54,7 @@ struct FlashcardsGalleryView: View {
                 .shadow(radius: 3)
                 .overlay(alignment: .top) {
                     Rectangle().frame(maxWidth: .infinity, maxHeight: 7, alignment: .top)
-                        .foregroundColor(collection.flashcardBackgroundColor)
+                        .foregroundColor(deck.flashcardBackgroundColor)
                         .clipShape(UnevenRoundedRectangle(topLeadingRadius: 7, topTrailingRadius: 7))
                 }
                 .onTapGesture {
@@ -65,7 +65,7 @@ struct FlashcardsGalleryView: View {
             
             LazyVGrid(columns: columns, spacing: 20) {
                 // TODO: Card might not have a category remove force unwrapping
-                CardGalleryItem(backgroundStyle: collection.flashcardBackgroundColor, action: addFlashcard) {
+                CardGalleryItem(backgroundStyle: deck.flashcardBackgroundColor, action: addFlashcard) {
                     LabeledContent("Add Card") {
                         Image(systemName: "plus")
                             .imageScale(.large)
@@ -75,7 +75,7 @@ struct FlashcardsGalleryView: View {
                 .shadow(radius: 2)
                 
                 ForEach(flashcards) { flashcard in
-                    CardGalleryItem(backgroundStyle: collection.flashcardBackgroundColor) {
+                    CardGalleryItem(backgroundStyle: deck.flashcardBackgroundColor) {
                         selectFlashcard(flashcard)
                     } label: {
                         Text(flashcard.prompt)
@@ -86,33 +86,33 @@ struct FlashcardsGalleryView: View {
         .sheet(isPresented: $isEditCategoryFormPresented) {
             NavigationStack {
                 Form {
-                    EditCollectionCategoryView(categories: categories,
-                                               collection: collection,
-                                               isNewCategoryFormPresented: $isNewCategoryFormPresented,
-                                               addCategoryFormViewModel: AddCategoryFormViewModel())
+                    EditDeckCategoryView(categories: categories,
+                                         deck: deck,
+                                         isNewCategoryFormPresented: $isNewCategoryFormPresented,
+                                         addCategoryFormViewModel: AddCategoryFormViewModel())
                     .padding()
 
                 }
             }
         }
-        .navigationTitle(collection.name)
+        .navigationTitle(deck.name)
     }
 }
 
 #Preview {
     MainActor.assumeIsolated {
-        FlashcardsGalleryView(collection: Collection(name: "Japanese"),
+        FlashcardsGalleryView(deck: Deck(name: "Japanese"),
                               selectFlashcard: { _ in },
                               addFlashcard: {})
         .modelContainer(previewContainer)
     }
 }
 
-struct EditCollectionCategoryView: View {
+struct EditDeckCategoryView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) private var modelContext
     let categories: [Category]
-    let collection: Collection
+    let deck: Deck
     
     @Binding var isNewCategoryFormPresented: Bool
     let addCategoryFormViewModel: AddCategoryFormViewModel
@@ -121,14 +121,14 @@ struct EditCollectionCategoryView: View {
     @State var isCategoryAlertPresented: Bool = false
     
     init(categories: [Category],
-         collection: Collection,
+         deck: Deck,
          isNewCategoryFormPresented: Binding<Bool>,
          addCategoryFormViewModel: AddCategoryFormViewModel) {
         self.categories = categories
-        self.collection = collection
+        self.deck = deck
         self._isNewCategoryFormPresented = isNewCategoryFormPresented
         self.addCategoryFormViewModel = addCategoryFormViewModel
-        self._selectedIndex = if let category = collection.category {
+        self._selectedIndex = if let category = deck.category {
             State(initialValue: categories.firstIndex(of: category) ?? 0)
         } else {
             State(initialValue: 0)
@@ -154,7 +154,7 @@ struct EditCollectionCategoryView: View {
             .padding()
         }
         .onChange(of: selectedIndex) {
-            collection.category = categories[selectedIndex]
+            deck.category = categories[selectedIndex]
             dismiss()
         }
     }
@@ -170,7 +170,7 @@ struct EditCollectionCategoryView: View {
         }
         
         modelContext.insert(category)
-        collection.category = category
+        deck.category = category
         isNewCategoryFormPresented = false
         
         dismiss()

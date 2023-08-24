@@ -14,9 +14,9 @@ struct SampleDeck {
         Category(name: "Japanese", color: "purple"),
     ]
     
-    static var collections: [Collection] = [
-        Collection(name: "Beginner"),
-        Collection(name: "Intermediate"),
-        Collection(name: "Advanced")
+    static var decks: [Deck] = [
+        Deck(name: "Beginner"),
+        Deck(name: "Intermediate"),
+        Deck(name: "Advanced")
     ]
 }

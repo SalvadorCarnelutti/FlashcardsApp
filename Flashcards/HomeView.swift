@@ -9,16 +9,16 @@ import SwiftUI
 import SwiftData
 
 enum Route: Hashable {
-    case flashcardsGalleryView(Collection)
+    case flashcardsGalleryView(Deck)
     case category(Category)
-    case collection(Collection)
+    case deck(Deck)
     case flashcard(Flashcard)
 }
 
 struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(filter: #Predicate<Category> { $0.collections.count > 0 }, sort: \Category.name) private var categories: [Category]
-    @Query(filter: #Predicate<Collection> { $0.category == nil }) private var collections: [Collection]
+    @Query(filter: #Predicate<Category> { $0.decks.count > 0 }, sort: \Category.name) private var categories: [Category]
+    @Query(filter: #Predicate<Deck> { $0.category == nil }) private var decks: [Deck]
     @State var isFormPresented: Bool = false
     
     @State private var navigationPath: [Route] = []
@@ -28,13 +28,13 @@ struct HomeView: View {
             List {
                 ForEach(categories) { category in
                     Section {
-                        ForEach(category.collections) { collection in
-                            NavigationLink(value: Route.flashcardsGalleryView(collection)) {
-                                Text(collection.name.capitalized)
+                        ForEach(category.decks) { deck in
+                            NavigationLink(value: Route.flashcardsGalleryView(deck)) {
+                                Text(deck.name.capitalized)
                             }
                         }
                         .onDelete { indexSet in
-                            deleteCategoryCollections(category: category, offsets: indexSet)
+                            deleteCategoryDecks(category: category, offsets: indexSet)
                         }
                     } header: {
                         HStack{
@@ -46,10 +46,10 @@ struct HomeView: View {
                 }
                 
                 Section {
-                    ForEach(collections) { collection in
-                        NavigationLink(collection.name, value: Route.flashcardsGalleryView(collection))
+                    ForEach(decks) { deck in
+                        NavigationLink(deck.name, value: Route.flashcardsGalleryView(deck))
                     }
-                    .onDelete(perform: deleteCollections)
+                    .onDelete(perform: deleteDecks)
                 }
             }
             .toolbar {
@@ -65,10 +65,9 @@ struct HomeView: View {
                     }
                 }
             }
-            // TODO: Maybe rename Collection to deck
             .navigationTitle("Decks")
             .overlay {
-                if categories.isEmpty && collections.isEmpty {
+                if categories.isEmpty && decks.isEmpty {
                     ContentUnavailableView {
                         Label("No flashcards at the moment", systemImage: "rectangle.slash")
                     } description: {
@@ -77,21 +76,21 @@ struct HomeView: View {
                 }
             }
             .sheet(isPresented: $isFormPresented) {
-                AddCollectionFormView()
+                AddDeckFormView()
 //                AddCategoryFormView(addCategoryFormViewModel: AddCategoryFormViewModel(), addAction: { _ in })
 //                    .presentationDetents([.medium])
 //                    .padding()
             }
             .navigationDestination(for: Route.self) { route in
                 switch route {
-                case let .flashcardsGalleryView(collection):
-                    FlashcardsGalleryView(collection: collection,
+                case let .flashcardsGalleryView(deck):
+                    FlashcardsGalleryView(deck: deck,
                                           selectFlashcard: selectFlashcard) {
                         withAnimation {
                             let newFlashcard = Flashcard(prompt: "Sample Front",
                                                          answer: "Sample Back",
-                                                         collection: collection)
-                            collection.addFlashcard(newFlashcard)
+                                                         deck: deck)
+                            deck.addFlashcard(newFlashcard)
                             modelContext.insert(newFlashcard)
                             
                             withAnimation {
@@ -107,18 +106,18 @@ struct HomeView: View {
         }
     }
     
-    private func deleteCategoryCollections(category: Category, offsets: IndexSet) {
+    private func deleteCategoryDecks(category: Category, offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(category.collections[index])
+                modelContext.delete(category.decks[index])
             }
         }
     }
     
-    private func deleteCollections(offsets: IndexSet) {
+    private func deleteDecks(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(collections[index])
+                modelContext.delete(decks[index])
             }
         }
     }

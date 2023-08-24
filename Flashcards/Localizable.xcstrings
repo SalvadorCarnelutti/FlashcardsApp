@@ -10,7 +10,7 @@
     "Add category" : {
 
     },
-    "Add collection" : {
+    "Add deck" : {
 
     },
     "Add flashcard" : {
@@ -43,10 +43,10 @@
     "Choose a different name" : {
 
     },
-    "Collection name" : {
+    "Deck name" : {
 
     },
-    "Collection name already exists" : {
+    "Deck name already exists" : {
 
     },
     "Decks" : {

@@ -22,7 +22,7 @@ final class AddFlashcardViewModel: ObservableObject {
     var getFlashcard: Flashcard {
         Flashcard(prompt: promptText,
                   answer: answerText,
-                  collection: Collection(name: "Random"))
+                  deck: Deck(name: "Random"))
     }
 }
 

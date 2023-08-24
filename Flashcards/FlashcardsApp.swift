@@ -17,7 +17,7 @@ struct FlashcardsApp: App {
         }
         /*
          If you have models that have relationships with each other, you only need to specify one model class and the container will infer the related model classes.
-         There is a one-to-many relationship between Category and Collection.
+         There is a one-to-many relationship between Category and Deck.
          */
         .modelContainer(for: Category.self)
     }

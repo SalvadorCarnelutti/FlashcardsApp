@@ -15,12 +15,12 @@ let previewContainer: ModelContainer = {
         )
         
         for category in SampleDeck.categories {
-            for collection in SampleDeck.collections {
-                container.mainContext.insert(collection)
+            for deck in SampleDeck.decks {
+                container.mainContext.insert(deck)
                 
-                let flashcard = Flashcard(prompt: "Who did X?", answer: "X was done by Y", collection: collection)
+                let flashcard = Flashcard(prompt: "Who did X?", answer: "X was done by Y", deck: deck)
                 container.mainContext.insert(flashcard)
-                collection.flashcards.append(flashcard)
+                deck.flashcards.append(flashcard)
             }
             container.mainContext.insert(category)
         }

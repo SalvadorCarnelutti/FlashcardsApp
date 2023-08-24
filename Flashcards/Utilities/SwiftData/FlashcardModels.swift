@@ -12,18 +12,18 @@ import SwiftUI
 @Model
 final class Category {
     @Attribute(.unique) var name: String
-    @Relationship(deleteRule: .cascade) var collections: [Collection]
+    @Relationship(deleteRule: .cascade) var decks: [Deck]
     let colorName: String
     
-    init(name: String, collections: [Collection] = [], color: String) {
+    init(name: String, decks: [Deck] = [], color: String) {
         self.name = name
-        self.collections = collections
+        self.decks = decks
         self.colorName = color
     }
 }
 
 @Model
-final class Collection {
+final class Deck {
     @Attribute(.unique) var name: String
     @Relationship(deleteRule: .cascade) var flashcards: [Flashcard]
     var category: Category?
@@ -53,15 +53,11 @@ final class Collection {
 final class Flashcard {
     var prompt: String
     var answer: String
-    var collection: Collection
+    var deck: Deck
     
-    init(prompt: String, answer: String, collection: Collection) {
+    init(prompt: String, answer: String, deck: Deck) {
         self.prompt = prompt
         self.answer = answer
-        self.collection = collection
+        self.deck = deck
     }
 }
-
-// Lista de categorias como secciones y colleciones como filas. Tocar la fila es entrar a las flashcards de esa coleccion
-// Entrar a una fila es mostrar collection view como la de WWDC (La primera tarjeta es un add, y las restantes son las ya creadas)
-// El add en el home debería ser para agregar una collecion

@@ -1,5 +1,5 @@
 //
-//  AddCollectionFormView.swift
+//  AddDeckFormViewModel.swift
 //  Flashcards
 //
 //  Created by Salvador on 8/15/23.
@@ -9,65 +9,65 @@ import SwiftUI
 import SwiftData
 import Observation
 
-@Observable final class AddCollectionFormViewModel {
-    var collectionName: String = ""
+@Observable final class AddDeckFormViewModel {
+    var deckName: String = ""
     
-    var getCollection: Collection {
-        Collection(name: collectionName.capitalized)
+    var getDeck: Deck {
+        Deck(name: deckName.capitalized)
     }
     
-    func getCollection(for category: Category) -> Collection {
-        Collection(name: collectionName.capitalized, category: category)
+    func getDeck(for category: Category) -> Deck {
+        Deck(name: deckName.capitalized, category: category)
     }
 }
 
-struct AddCollectionFormView: View {
+struct AddDeckFormView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     
-    @Query private var collections: [Collection]
+    @Query private var decks: [Deck]
     @Query(sort: \Category.name) private var categories: [Category]
     
-    @State private var addCollectionFormViewModel = AddCollectionFormViewModel()
+    @State private var addDeckFormViewModel = AddDeckFormViewModel()
     private var addCategoryFormViewModel = AddCategoryFormViewModel()
-    @FocusState private var collectionNameFieldIsFocused: Bool
+    @FocusState private var deckNameFieldIsFocused: Bool
             
     @State var skipsCategory: Bool = false
     @State var selectedIndex: Int = 0
     @State var isNewCategoryFormPresented: Bool = false
-    @State var isCollectionAlertPresented: Bool = false
+    @State var isDeckAlertPresented: Bool = false
     
     var body: some View {
         NavigationStack {
             Form {
                 Section("Name") {
-                    TextField(text: $addCollectionFormViewModel.collectionName) {
-                        Text("Collection name")
+                    TextField(text: $addDeckFormViewModel.deckName) {
+                        Text("Deck name")
                     }
-                    .focused($collectionNameFieldIsFocused)
+                    .focused($deckNameFieldIsFocused)
                 }
                 
                 Section("Category (Optional)") {
                     if categories.isNotEmpty {
                         Toggle("Skip", isOn: $skipsCategory)
                     }
-                    AddCollectionCategoryView(categories: categories,
-                                   isNewCategoryFormPresented: $isNewCategoryFormPresented,
-                                   addCategoryFormViewModel: AddCategoryFormViewModel(),
-                                   selectedIndex: $selectedIndex)
+                    AddDeckCategoryView(categories: categories,
+                                        isNewCategoryFormPresented: $isNewCategoryFormPresented,
+                                        addCategoryFormViewModel: AddCategoryFormViewModel(),
+                                        selectedIndex: $selectedIndex)
                     .disabled(skipsCategory)
                 }
                 
-                Button(action: addCollection) {
-                    Text("Add collection")
+                Button(action: addDeck) {
+                    Text("Add deck")
                 }
-                .disabled(addCollectionFormViewModel.collectionName.isEmpty)
+                .disabled(addDeckFormViewModel.deckName.isEmpty)
             }
             .onAppear {
-                collectionNameFieldIsFocused = true
+                deckNameFieldIsFocused = true
             }
-            .alert(isPresented: $isCollectionAlertPresented) {
-                Alert(title: Text("Collection name already exists"),
+            .alert(isPresented: $isDeckAlertPresented) {
+                Alert(title: Text("Deck name already exists"),
                       message: Text("Choose a different name"))
             }
         }
@@ -77,18 +77,18 @@ struct AddCollectionFormView: View {
         isNewCategoryFormPresented.toggle()
     }
     
-    private func addCollection() {
-        guard !collections.map({ $0.name }).contains(where: { $0.caseInsensitiveCompare(addCollectionFormViewModel.collectionName) == .orderedSame }) else {
-            isCollectionAlertPresented = true
+    private func addDeck() {
+        guard !decks.map({ $0.name }).contains(where: { $0.caseInsensitiveCompare(addDeckFormViewModel.deckName) == .orderedSame }) else {
+            isDeckAlertPresented = true
             return
         }
         
         if skipsCategory || categories.isEmpty {
-            modelContext.insert(addCollectionFormViewModel.getCollection)
+            modelContext.insert(addDeckFormViewModel.getDeck)
         } else {
             let category = categories[selectedIndex]
             modelContext.insert(category)
-            modelContext.insert(addCollectionFormViewModel.getCollection(for: category))
+            modelContext.insert(addDeckFormViewModel.getDeck(for: category))
         }
         
         dismiss()
@@ -96,10 +96,10 @@ struct AddCollectionFormView: View {
 }
 
 #Preview {
-    AddCollectionFormView()
+    AddDeckFormView()
 }
 
-struct AddCollectionCategoryView: View {
+struct AddDeckCategoryView: View {
     @Environment(\.modelContext) private var modelContext
     let categories: [Category]
     
@@ -143,7 +143,7 @@ struct AddCollectionCategoryView: View {
             modelContext.insert(category)
         }
         
-        // Insertion is not immediate, collections take a moment to update
+        // Insertion is not immediate, decks take a moment to update
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25 , execute: {
             selectedIndex = categories.firstIndex(of: category) ?? 0
         })
