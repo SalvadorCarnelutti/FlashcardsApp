@@ -144,7 +144,7 @@ struct AddDeckCategoryView: View {
         }
         
         // Insertion is not immediate, decks take a moment to update
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25 , execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 , execute: {
             selectedIndex = categories.firstIndex(of: category) ?? 0
         })
         isNewCategoryFormPresented = false

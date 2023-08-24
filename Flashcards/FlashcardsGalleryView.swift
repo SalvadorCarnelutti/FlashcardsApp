@@ -84,16 +84,10 @@ struct FlashcardsGalleryView: View {
             }
         }
         .sheet(isPresented: $isEditCategoryFormPresented) {
-            NavigationStack {
-                Form {
-                    EditDeckCategoryView(categories: categories,
-                                         deck: deck,
-                                         isNewCategoryFormPresented: $isNewCategoryFormPresented,
-                                         addCategoryFormViewModel: AddCategoryFormViewModel())
-                    .padding()
-
-                }
-            }
+            EditDeckCategoryView(categories: categories,
+                                 deck: deck,
+                                 isNewCategoryFormPresented: $isNewCategoryFormPresented,
+                                 addCategoryFormViewModel: AddCategoryFormViewModel())
         }
         .navigationTitle(deck.name)
     }
@@ -136,31 +130,48 @@ struct EditDeckCategoryView: View {
     }
     
     var body: some View {
-        Group {
-            if categories.isNotEmpty {
-                ChooseCategoryPicker(selectedIndex: $selectedIndex,
-                                     categories: categories)
+        NavigationStack {
+            Form {
+                Section {
+                    Group {
+                        if categories.isNotEmpty {
+                            ChooseCategoryPicker(selectedIndex: $selectedIndex,
+                                                 categories: categories)
+                        }
+                        Button(action: toggleNewCategoryFormPresented) {
+                            Text("Add new category")
+                        }
+                        if deck.category != nil {
+                            Button(action: clearCategory) {
+                                Text("Clear category")
+                            }
+                        }
+                    }
+                    .sheet(isPresented: $isNewCategoryFormPresented) {
+                        AddCategoryFormView(isAlertPresented: $isCategoryAlertPresented,
+                                            isPresented: $isNewCategoryFormPresented,
+                                            addCategoryFormViewModel: addCategoryFormViewModel,
+                                            addCategory: addCategory)
+                        .presentationDetents([.medium])
+                        .padding()
+                    }
+                    // TODO: At the moment only a category get selected when tapping a different index, haven't found a stable to detect when the user taps the same index or just when navigation to the picker selection view
+                    .onChange(of: selectedIndex) {
+                        deck.category = categories[selectedIndex]
+                        dismiss()
+                    }
+                }
             }
-            Button(action: toggleNewCategory) {
-                Text("Add new category")
-            }
-        }
-        .sheet(isPresented: $isNewCategoryFormPresented) {
-            AddCategoryFormView(isAlertPresented: $isCategoryAlertPresented,
-                                isPresented: $isNewCategoryFormPresented,
-                                addCategoryFormViewModel: addCategoryFormViewModel,
-                                addCategory: addCategory)
-            .presentationDetents([.medium])
-            .padding()
-        }
-        .onChange(of: selectedIndex) {
-            deck.category = categories[selectedIndex]
-            dismiss()
         }
     }
     
-    private func toggleNewCategory() {
+    private func toggleNewCategoryFormPresented() {
         isNewCategoryFormPresented.toggle()
+    }
+    
+    private func clearCategory() {
+        deck.category = nil
+        dismiss()
     }
     
     private func addCategory(category: Category) {
