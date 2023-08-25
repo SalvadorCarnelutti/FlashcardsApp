@@ -8,39 +8,38 @@
 import SwiftUI
 
 struct FlashcardView: View {
-    let flashcardViewModel: FlashcardViewModel
+    let flashcard: Flashcard
     
     var body: some View {
         CardContainerView {
             VStack {
                 HStack {
-                    Text(flashcardViewModel.side)
+                    Text("FRONT")
                         .font(.footnote)
                         .padding(5)
-                        .background(flashcardViewModel.color.opacity(0.8))
+                        .background(flashcard.backgroundColor.opacity(0.8))
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                     Spacer()
                 }
                 HStack {
-                    Text(flashcardViewModel.text)
+                    Text(flashcard.prompt)
                         .font(.title3)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(flashcardViewModel.color.opacity(0.8))
+                        .background(flashcard.backgroundColor.opacity(0.8))
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
                 .padding(.vertical, 40)
             }
             .padding()
-            .background(flashcardViewModel.color.opacity(0.7))
+            .background(flashcard.backgroundColor.opacity(0.7))
         }
         .padding()
     }
 }
 
-#Preview {
-    let flashcardViewModel = FlashcardViewModel(flashcardSide: .front)
-    
-    return FlashcardView(flashcardViewModel: flashcardViewModel)
-}
+//#Preview {
+//    FlashcardView(flashcard: Flashcard(prompt: "Who was x", answer: "It was Y", deck: Deck(name: "Doers")))
+//        .modelContainer(previewContainer)
+//}

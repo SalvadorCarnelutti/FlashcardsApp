@@ -10,10 +10,27 @@ import SwiftData
 
 @main
 struct FlashcardsApp: App {
+    @StateObject var router = Router()
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            NavigationStack(path: $router.navigationPathPath) {
+                HomeView()
+                    .navigationDestination(for: Router.Route.self) { route in
+                        switch route {
+                        case let .flashcardsGalleryView(deck):
+                            DeckGalleryView(deck: deck)
+                        case let .flashcardCarousel(flashcardCarouselViewModel):
+                            FlashcardCarousel(flashcardCarouselViewModel: flashcardCarouselViewModel)
+                            // TODO: Change for proper implementations
+                        case let .flashcard(flashcard):
+                            FlashcardView(flashcard: flashcard)
+                        default:
+                            EmptyView()
+                        }
+                    }
+            }
+            .environmentObject(router)
         }
         /*
          If you have models that have relationships with each other, you only need to specify one model class and the container will infer the related model classes.

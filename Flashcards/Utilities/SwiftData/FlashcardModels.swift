@@ -54,10 +54,16 @@ final class Flashcard {
     var prompt: String
     var answer: String
     var deck: Deck
+    var creationDate: Date
     
-    init(prompt: String, answer: String, deck: Deck) {
+    init(prompt: String, answer: String, deck: Deck, creationDate: Date = .now) {
         self.prompt = prompt
         self.answer = answer
         self.deck = deck
+        self.creationDate = creationDate
+    }
+    
+    @Transient var backgroundColor: Color {
+        deck.flashcardBackgroundColor
     }
 }

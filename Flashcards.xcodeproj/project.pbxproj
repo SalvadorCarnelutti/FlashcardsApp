@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4599C422A9947CF00BEF51F /* FlashcardCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4599C412A9947CF00BEF51F /* FlashcardCarousel.swift */; };
 		B49EB9992A8BEE2900D94D6E /* FlashcardColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EB9982A8BEE2900D94D6E /* FlashcardColor.swift */; };
 		B49EB99B2A8BEFF300D94D6E /* PreviewSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EB99A2A8BEFF300D94D6E /* PreviewSampleData.swift */; };
 		B49EB99D2A8BF00F00D94D6E /* SampleDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EB99C2A8BF00F00D94D6E /* SampleDeck.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B4599C412A9947CF00BEF51F /* FlashcardCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardCarousel.swift; sourceTree = "<group>"; };
 		B49EB9982A8BEE2900D94D6E /* FlashcardColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardColor.swift; sourceTree = "<group>"; };
 		B49EB99A2A8BEFF300D94D6E /* PreviewSampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSampleData.swift; sourceTree = "<group>"; };
 		B49EB99C2A8BF00F00D94D6E /* SampleDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleDeck.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				B4E680322A899CBC008B1EAF /* FlashcardsApp.swift */,
 				B4E680342A899CBC008B1EAF /* HomeView.swift */,
 				B4A257CB2A8D0A6300D2C995 /* DeckGalleryView.swift */,
+				B4599C412A9947CF00BEF51F /* FlashcardCarousel.swift */,
 				B4A257D22A8D40AB00D2C995 /* CardGalleryItem.swift */,
 				B4E680662A8ADCB7008B1EAF /* AddCategoryFormView.swift */,
 				B4A257C92A8C452900D2C995 /* AddDeckFormView.swift */,
@@ -365,6 +368,7 @@
 				B4A257CA2A8C452900D2C995 /* AddDeckFormView.swift in Sources */,
 				B4E6803C2A899CBD008B1EAF /* FlashcardModels.swift in Sources */,
 				B49EB9992A8BEE2900D94D6E /* FlashcardColor.swift in Sources */,
+				B4599C422A9947CF00BEF51F /* FlashcardCarousel.swift in Sources */,
 				B4A257CE2A8D1C6D00D2C995 /* FlashcardSide.swift in Sources */,
 				B49EB99D2A8BF00F00D94D6E /* SampleDeck.swift in Sources */,
 				B4A257C82A8C293600D2C995 /* FlashcardView.swift in Sources */,

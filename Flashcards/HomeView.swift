@@ -8,11 +8,28 @@
 import SwiftUI
 import SwiftData
 
-enum Route: Hashable {
-    case flashcardsGalleryView(Deck)
-    case category(Category)
-    case deck(Deck)
-    case flashcard(Flashcard)
+final class Router: ObservableObject {
+    public enum Route: Hashable {
+        case flashcardsGalleryView(Deck)
+        case flashcardCarousel(FlashcardCarouselViewModel)
+        case category(Category)
+        case deck(Deck)
+        case flashcard(Flashcard)
+    }
+    
+    @Published var navigationPathPath = NavigationPath()
+    
+    func navigate(to route: Route) {
+        navigationPathPath.append(route)
+    }
+    
+    func navigateBack() {
+        navigationPathPath.removeLast()
+    }
+    
+    func navigateToRoot() {
+        navigationPathPath.removeLast(navigationPathPath.count)
+    }
 }
 
 struct HomeView: View {
@@ -21,15 +38,14 @@ struct HomeView: View {
     @Query(filter: #Predicate<Deck> { $0.category == nil }) private var decks: [Deck]
     @State var isFormPresented: Bool = false
     
-    @State private var navigationPath: [Route] = []
+    @EnvironmentObject var router: Router
     
     var body: some View {
-        NavigationStack(path: $navigationPath) {
             List {
                 ForEach(categories) { category in
                     Section {
                         ForEach(category.decks) { deck in
-                            NavigationLink(value: Route.flashcardsGalleryView(deck)) {
+                            NavigationLink(value: Router.Route.flashcardsGalleryView(deck)) {
                                 Text(deck.name.capitalized)
                             }
                         }
@@ -47,7 +63,7 @@ struct HomeView: View {
                 
                 Section {
                     ForEach(decks) { deck in
-                        NavigationLink(deck.name, value: Route.flashcardsGalleryView(deck))
+                        NavigationLink(deck.name, value: Router.Route.flashcardsGalleryView(deck))
                     }
                     .onDelete(perform: deleteDecks)
                 }
@@ -77,34 +93,7 @@ struct HomeView: View {
             }
             .sheet(isPresented: $isFormPresented) {
                 AddDeckFormView()
-//                AddCategoryFormView(addCategoryFormViewModel: AddCategoryFormViewModel(), addAction: { _ in })
-//                    .presentationDetents([.medium])
-//                    .padding()
             }
-            .navigationDestination(for: Route.self) { route in
-                switch route {
-                case let .flashcardsGalleryView(deck):
-                    DeckGalleryView(deck: deck,
-                                    selectFlashcard: selectFlashcard) {
-                        withAnimation {
-                            let newFlashcard = Flashcard(prompt: "Sample Front",
-                                                         answer: "Sample Back",
-                                                         deck: deck)
-                            deck.addFlashcard(newFlashcard)
-                            modelContext.insert(newFlashcard)
-                            
-                            withAnimation {
-                                navigationPath.append(.flashcard(newFlashcard))
-                            }
-                        }
-                    }
-//                case .fl
-                    // TODO: Change for proper implementations
-                default:
-                    EmptyView()
-                }
-            }
-        }
     }
     
     private func deleteCategoryDecks(category: Category, offsets: IndexSet) {
@@ -125,12 +114,6 @@ struct HomeView: View {
     
     func toggleForm() {
         isFormPresented.toggle()
-    }
-    
-    func selectFlashcard(_ flashCard: Flashcard) {
-        withAnimation {
-            navigationPath.append(.flashcard(flashCard))
-        }
     }
 }
 

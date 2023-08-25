@@ -11,24 +11,18 @@ import Combine
 
 struct DeckGalleryView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var flashcards: [Flashcard]
+    @EnvironmentObject var router: Router
     let columns = [GridItem(.adaptive(minimum: 150))]
     
     @Bindable var deck: Deck
+    @Query(sort: \Flashcard.creationDate) private var flashcards: [Flashcard]
     @Query(sort: \Category.name) private var categories: [Category]
     
     @State var isNewCategoryFormPresented: Bool = false
-    
-    let selectFlashcard: (Flashcard) -> Void
-    let addFlashcard: () -> Void
-    
     @State var isEditCategoryFormPresented: Bool = false
     
-    init(deck: Deck, selectFlashcard: @escaping (Flashcard) -> Void, addFlashcard: @escaping () -> Void) {
+    init(deck: Deck) {
         self.deck = deck
-        self.selectFlashcard = selectFlashcard
-        self.addFlashcard = addFlashcard
-        
         // Workaround as of Xcode 15.6, SwiftData doesn't allow dynamic queries
         let deckName = deck.name
         
@@ -65,7 +59,6 @@ struct DeckGalleryView: View {
             .padding()
             
             LazyVGrid(columns: columns, spacing: 20) {
-                // TODO: Card might not have a category remove force unwrapping
                 CardGalleryItem(backgroundStyle: deck.flashcardBackgroundColor, action: addFlashcard) {
                     LabeledContent("Add Card") {
                         Image(systemName: "plus")
@@ -92,13 +85,29 @@ struct DeckGalleryView: View {
         }
         .navigationTitle(deck.name)
     }
+    
+    private func addFlashcard() {
+        let newFlashcard = Flashcard(prompt: "Sample Front",
+                                     answer: "Sample Back",
+                                     deck: deck)
+        deck.addFlashcard(newFlashcard)
+        modelContext.insert(newFlashcard)
+        
+        let flashcardCarouselViewModel = FlashcardCarouselViewModel(flashcards: flashcards,
+                                                                    selectedFlashcard: newFlashcard)
+        router.navigate(to: .flashcardCarousel(flashcardCarouselViewModel))
+    }
+    
+    private func selectFlashcard(_ flashCard: Flashcard) {
+        let flashcardCarouselViewModel = FlashcardCarouselViewModel(flashcards: flashcards,
+                                                                    selectedFlashcard: flashCard)
+        router.navigate(to: .flashcardCarousel(flashcardCarouselViewModel))
+    }
 }
 
 #Preview {
     MainActor.assumeIsolated {
-        DeckGalleryView(deck: Deck(name: "Japanese"),
-                        selectFlashcard: { _ in },
-                        addFlashcard: {})
+        DeckGalleryView(deck: Deck(name: "Japanese"))
         .modelContainer(previewContainer)
     }
 }
