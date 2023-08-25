@@ -157,12 +157,11 @@ struct EditDeckCategoryView: View {
                         .padding()
                     }
                     .onChange(of: selectedIndex) {
-                        guard let selectedIndex = selectedIndex else {
+                        if let selectedIndex = selectedIndex {
+                            deck.category = categories[selectedIndex]
+                        } else {
                             deck.category = nil
-                            dismiss()
-                            return
                         }
-                        deck.category = categories[selectedIndex]
                         dismiss()
                     }
                 }
