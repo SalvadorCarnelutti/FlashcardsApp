@@ -8,30 +8,6 @@
 import SwiftUI
 import SwiftData
 
-final class Router: ObservableObject {
-    public enum Route: Hashable {
-        case flashcardsGalleryView(Deck)
-        case flashcardCarousel(FlashcardCarouselViewModel)
-        case category(Category)
-        case deck(Deck)
-        case flashcard(Flashcard)
-    }
-    
-    @Published var navigationPathPath = NavigationPath()
-    
-    func navigate(to route: Route) {
-        navigationPathPath.append(route)
-    }
-    
-    func navigateBack() {
-        navigationPathPath.removeLast()
-    }
-    
-    func navigateToRoot() {
-        navigationPathPath.removeLast(navigationPathPath.count)
-    }
-}
-
 struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(filter: #Predicate<Category> { $0.decks.count > 0 }, sort: \Category.name) private var categories: [Category]
