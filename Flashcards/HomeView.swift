@@ -84,8 +84,8 @@ struct HomeView: View {
             .navigationDestination(for: Route.self) { route in
                 switch route {
                 case let .flashcardsGalleryView(deck):
-                    FlashcardsGalleryView(deck: deck,
-                                          selectFlashcard: selectFlashcard) {
+                    DeckGalleryView(deck: deck,
+                                    selectFlashcard: selectFlashcard) {
                         withAnimation {
                             let newFlashcard = Flashcard(prompt: "Sample Front",
                                                          answer: "Sample Back",
@@ -98,6 +98,7 @@ struct HomeView: View {
                             }
                         }
                     }
+//                case .fl
                     // TODO: Change for proper implementations
                 default:
                     EmptyView()

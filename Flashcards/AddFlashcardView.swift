@@ -40,8 +40,10 @@ struct AddFlashcardView: View {
              _focusedField refers to the property wrapper.
              $focusedField refers to the property wrapper's projected value; in the case of @FocusState, that is a Binding.
              */
-            EditableFlashcardView(flashcardViewModel: addFlashcardViewModel.flashcardPromptViewModel, focusedField: _focusedField)
-            EditableFlashcardView(flashcardViewModel: addFlashcardViewModel.flashcardAnswerViewModel, focusedField: _focusedField)
+            EditableFlashcardView(flashcardViewModel: addFlashcardViewModel.flashcardPromptViewModel,
+                                  focusedField: _focusedField)
+            EditableFlashcardView(flashcardViewModel: addFlashcardViewModel.flashcardAnswerViewModel,
+                                  focusedField: _focusedField)
             
             /*
              More explanation:

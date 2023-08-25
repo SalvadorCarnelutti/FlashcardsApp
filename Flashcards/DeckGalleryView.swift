@@ -1,5 +1,5 @@
 //
-//  FlashcardsGalleryView.swift
+//  DeckGalleryView.swift
 //  Flashcards
 //
 //  Created by Salvador on 8/16/23.
@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 import Combine
 
-struct FlashcardsGalleryView: View {
+struct DeckGalleryView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var flashcards: [Flashcard]
     let columns = [GridItem(.adaptive(minimum: 150))]
@@ -96,9 +96,9 @@ struct FlashcardsGalleryView: View {
 
 #Preview {
     MainActor.assumeIsolated {
-        FlashcardsGalleryView(deck: Deck(name: "Japanese"),
-                              selectFlashcard: { _ in },
-                              addFlashcard: {})
+        DeckGalleryView(deck: Deck(name: "Japanese"),
+                        selectFlashcard: { _ in },
+                        addFlashcard: {})
         .modelContainer(previewContainer)
     }
 }
