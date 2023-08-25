@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Combine
 
 struct FlashcardsGalleryView: View {
     @Environment(\.modelContext) private var modelContext
@@ -110,7 +111,7 @@ struct EditDeckCategoryView: View {
     
     @Binding var isNewCategoryFormPresented: Bool
     let addCategoryFormViewModel: AddCategoryFormViewModel
-    @State var selectedIndex: Int
+    @State private var selectedIndex: Int?
     
     @State var isCategoryAlertPresented: Bool = false
     
@@ -125,7 +126,7 @@ struct EditDeckCategoryView: View {
         self._selectedIndex = if let category = deck.category {
             State(initialValue: categories.firstIndex(of: category) ?? 0)
         } else {
-            State(initialValue: 0)
+            State(initialValue: nil)
         }
     }
     
@@ -135,8 +136,8 @@ struct EditDeckCategoryView: View {
                 Section {
                     Group {
                         if categories.isNotEmpty {
-                            ChooseCategoryPicker(selectedIndex: $selectedIndex,
-                                                 categories: categories)
+                            OptionalChooseCategoryPicker(selectedIndex: $selectedIndex,
+                                                         categories: categories)
                         }
                         Button(action: toggleNewCategoryFormPresented) {
                             Text("Add new category")
@@ -155,8 +156,12 @@ struct EditDeckCategoryView: View {
                         .presentationDetents([.medium])
                         .padding()
                     }
-                    // TODO: At the moment only a category gets selected when tapping a different index, haven't found a stable to detect when the user taps the same index or just when navigation to the picker selection view
                     .onChange(of: selectedIndex) {
+                        guard let selectedIndex = selectedIndex else {
+                            deck.category = nil
+                            dismiss()
+                            return
+                        }
                         deck.category = categories[selectedIndex]
                         dismiss()
                     }
@@ -185,5 +190,27 @@ struct EditDeckCategoryView: View {
         isNewCategoryFormPresented = false
         
         dismiss()
+    }
+}
+
+struct OptionalChooseCategoryPicker: View {
+    let selectedIndex: Binding<Int?>
+    let categories: [Category]
+    
+    var body: some View {
+        Picker("Select category", selection: selectedIndex) {
+            Text("None").tag(Optional<Int>(nil))
+            ForEach(Array(categories.enumerated()), id: \.element) { index, category in
+                HStack {
+                    Text(category.name.capitalized)
+                    // TODO: Maybe change in such a way I don't compare strings
+                    if category.colorName != "clear" {
+                        Image(systemName: "rectangle.fill")
+                            .foregroundStyle(FlashcardColor(rawValue: category.colorName)!.color)
+                    }
+                }.tag(Optional(index))
+            }
+        }.id(categories)
+            .pickerStyle(.navigationLink)
     }
 }
