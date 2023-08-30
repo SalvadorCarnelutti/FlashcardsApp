@@ -14,10 +14,11 @@ struct DeckGalleryView: View {
     @EnvironmentObject var router: Router
     let columns = [GridItem(.adaptive(minimum: 150))]
     
-    @Bindable var deck: Deck
+    let deck: Deck
     @Query(sort: \Flashcard.creationDate) private var flashcards: [Flashcard]
     @Query(sort: \Category.name) private var categories: [Category]
     
+    @State private var editMode = EditMode.inactive
     @State var isNewCategoryFormPresented: Bool = false
     @State var isEditCategoryFormPresented: Bool = false
     
@@ -30,7 +31,7 @@ struct DeckGalleryView: View {
             $0.deck.name == deckName
         }
         
-        _flashcards = Query(filter: predicate, sort: \Flashcard.prompt)
+        _flashcards = Query(filter: predicate, sort: \Flashcard.creationDate, order: .reverse)
     }
     
     var body: some View {
@@ -69,12 +70,17 @@ struct DeckGalleryView: View {
                 .shadow(radius: 2)
                 
                 ForEach(flashcards) { flashcard in
-                    CardGalleryItem(backgroundStyle: deck.flashcardBackgroundColor) {
+                    CardGalleryItem(backgroundStyle: deck.flashcardBackgroundColor.opacity(0.9)) {
                         selectFlashcard(flashcard)
                     } label: {
                         Text(flashcard.prompt)
                     }
                 }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                EditButton()
             }
         }
         .sheet(isPresented: $isEditCategoryFormPresented) {
@@ -83,6 +89,7 @@ struct DeckGalleryView: View {
                                  isNewCategoryFormPresented: $isNewCategoryFormPresented,
                                  addCategoryFormViewModel: AddCategoryFormViewModel())
         }
+        .environment(\.editMode, $editMode)
         .navigationTitle(deck.name)
     }
     
@@ -94,13 +101,19 @@ struct DeckGalleryView: View {
         modelContext.insert(newFlashcard)
         
         let flashcardCarouselViewModel = FlashcardCarouselViewModel(flashcards: flashcards,
-                                                                    selectedFlashcard: newFlashcard)
+                                                                    selectedFlashcard: newFlashcard,
+                                                                    isEditing: true)
+        
+        editMode = .inactive
         router.navigate(to: .flashcardCarousel(flashcardCarouselViewModel))
     }
     
     private func selectFlashcard(_ flashCard: Flashcard) {
         let flashcardCarouselViewModel = FlashcardCarouselViewModel(flashcards: flashcards,
-                                                                    selectedFlashcard: flashCard)
+                                                                    selectedFlashcard: flashCard,
+                                                                    isEditing: editMode.isEditing)
+        
+        editMode = .inactive
         router.navigate(to: .flashcardCarousel(flashcardCarouselViewModel))
     }
 }

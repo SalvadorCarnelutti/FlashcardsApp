@@ -13,13 +13,7 @@
     "Add deck" : {
 
     },
-    "Add flashcard" : {
-
-    },
     "Add new category" : {
-
-    },
-    "Both sides must be filled" : {
 
     },
     "Cancel" : {
@@ -55,7 +49,10 @@
     "Decks" : {
 
     },
-    "Fill missing contents" : {
+    "Delete" : {
+
+    },
+    "Edit Mode" : {
 
     },
     "FRONT" : {
@@ -68,6 +65,9 @@
 
     },
     "None" : {
+
+    },
+    "Read mode" : {
 
     },
     "Select category" : {

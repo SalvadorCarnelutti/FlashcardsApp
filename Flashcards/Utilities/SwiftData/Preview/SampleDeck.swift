@@ -19,4 +19,7 @@ struct SampleDeck {
         Deck(name: "Intermediate"),
         Deck(name: "Advanced")
     ]
+    
+    static var deck: Deck { Deck(name: "Japanese") }
+    static var flashcard: Flashcard { Flashcard(prompt: "Nodo", answer: "Throat", deck: Self.deck) }
 }

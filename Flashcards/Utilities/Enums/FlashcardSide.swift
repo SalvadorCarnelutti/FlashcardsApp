@@ -14,9 +14,9 @@ enum FlashcardSide {
     var placeholder: String {
         switch self {
         case .front:
-            return "Sample Front"
+            return "Front Text"
         case .back:
-            return "Sample Back"
+            return "Back Text"
         }
     }
     

@@ -1,5 +1,5 @@
 //
-//  EditableFlashcardView.swift
+//  EditableFlashcard.swift
 //  Flashcards
 //
 //  Created by Salvador on 8/14/23.
@@ -7,21 +7,36 @@
 
 import SwiftUI
 
-struct EditableFlashcardView: View {
-    @ObservedObject var flashcardViewModel: FlashcardViewModel
+final class EditableFlashcardViewModel: ObservableObject {
+    @Bindable var flashcard: Flashcard
+    let flashcardSide: FlashcardSide
+    
+    var sideText: String { flashcardSide.side }
+    var color: Color { flashcardSide.color }
+    var placeholder: String { flashcardSide.placeholder }
+    var textBind: Binding<String> { flashcardSide == .front ? $flashcard.prompt : $flashcard.answer }
+    
+    init(flashcardSide: FlashcardSide, flashcard: Flashcard) {
+        self.flashcard = flashcard
+        self.flashcardSide = flashcardSide
+    }
+}
+
+struct EditableFlashcard: View {
+    @ObservedObject var flashcardViewModel: EditableFlashcardViewModel
     @FocusState var focusedField: FlashcardSide?
     
     var body: some View {
         CardContainerView {
             VStack {
                 HStack {
-                    Text(flashcardViewModel.side)
+                    Text(flashcardViewModel.sideText)
                         .font(.footnote)
                     Spacer()
                 }
                 HStack {
                     TextField(flashcardViewModel.placeholder,
-                              text: $flashcardViewModel.text,
+                              text: flashcardViewModel.textBind,
                               axis: .vertical)
                     .focused($focusedField, equals: flashcardViewModel.flashcardSide)
                     .multilineTextAlignment(.center)
@@ -40,7 +55,7 @@ struct EditableFlashcardView: View {
 }
 
 #Preview {
-    let flashcardViewModel = FlashcardViewModel(flashcardSide: .front)
+    let flashcardViewModel = EditableFlashcardViewModel(flashcardSide: .front, flashcard: SampleDeck.flashcard)
     
-    return EditableFlashcardView(flashcardViewModel: flashcardViewModel)
+    return EditableFlashcard(flashcardViewModel: flashcardViewModel)
 }

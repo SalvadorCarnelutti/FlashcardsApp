@@ -29,8 +29,8 @@
 		B4E680502A899CBD008B1EAF /* FlashcardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6804F2A899CBD008B1EAF /* FlashcardsUITests.swift */; };
 		B4E680522A899CBD008B1EAF /* FlashcardsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680512A899CBD008B1EAF /* FlashcardsUITestsLaunchTests.swift */; };
 		B4E6805F2A8A8411008B1EAF /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B4E6805E2A8A8411008B1EAF /* Localizable.xcstrings */; };
-		B4E680612A8A891F008B1EAF /* AddFlashcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680602A8A891F008B1EAF /* AddFlashcardView.swift */; };
-		B4E680652A8ADB8B008B1EAF /* EditableFlashcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680642A8ADB8B008B1EAF /* EditableFlashcardView.swift */; };
+		B4E680612A8A891F008B1EAF /* FlashcardEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680602A8A891F008B1EAF /* FlashcardEditorView.swift */; };
+		B4E680652A8ADB8B008B1EAF /* EditableFlashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680642A8ADB8B008B1EAF /* EditableFlashcard.swift */; };
 		B4E680672A8ADCB7008B1EAF /* AddCategoryFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680662A8ADCB7008B1EAF /* AddCategoryFormView.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,8 +77,8 @@
 		B4E6804F2A899CBD008B1EAF /* FlashcardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsUITests.swift; sourceTree = "<group>"; };
 		B4E680512A899CBD008B1EAF /* FlashcardsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B4E6805E2A8A8411008B1EAF /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		B4E680602A8A891F008B1EAF /* AddFlashcardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFlashcardView.swift; sourceTree = "<group>"; };
-		B4E680642A8ADB8B008B1EAF /* EditableFlashcardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableFlashcardView.swift; sourceTree = "<group>"; };
+		B4E680602A8A891F008B1EAF /* FlashcardEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardEditorView.swift; sourceTree = "<group>"; };
+		B4E680642A8ADB8B008B1EAF /* EditableFlashcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableFlashcard.swift; sourceTree = "<group>"; };
 		B4E680662A8ADCB7008B1EAF /* AddCategoryFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryFormView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,8 +181,8 @@
 				B4A257D22A8D40AB00D2C995 /* CardGalleryItem.swift */,
 				B4E680662A8ADCB7008B1EAF /* AddCategoryFormView.swift */,
 				B4A257C92A8C452900D2C995 /* AddDeckFormView.swift */,
-				B4E680602A8A891F008B1EAF /* AddFlashcardView.swift */,
-				B4E680642A8ADB8B008B1EAF /* EditableFlashcardView.swift */,
+				B4E680602A8A891F008B1EAF /* FlashcardEditorView.swift */,
+				B4E680642A8ADB8B008B1EAF /* EditableFlashcard.swift */,
 				B4A257C72A8C293600D2C995 /* FlashcardView.swift */,
 				B4E680362A899CBD008B1EAF /* Assets.xcassets */,
 				B4E680382A899CBD008B1EAF /* Preview Content */,
@@ -375,8 +375,8 @@
 				B4E680352A899CBC008B1EAF /* HomeView.swift in Sources */,
 				B4A257D12A8D3B1D00D2C995 /* CardContainer.swift in Sources */,
 				B4E3C3D52A996E03006E9E75 /* Router.swift in Sources */,
-				B4E680652A8ADB8B008B1EAF /* EditableFlashcardView.swift in Sources */,
-				B4E680612A8A891F008B1EAF /* AddFlashcardView.swift in Sources */,
+				B4E680652A8ADB8B008B1EAF /* EditableFlashcard.swift in Sources */,
+				B4E680612A8A891F008B1EAF /* FlashcardEditorView.swift in Sources */,
 				B4A257CA2A8C452900D2C995 /* AddDeckFormView.swift in Sources */,
 				B4E6803C2A899CBD008B1EAF /* FlashcardModels.swift in Sources */,
 				B49EB9992A8BEE2900D94D6E /* FlashcardColor.swift in Sources */,

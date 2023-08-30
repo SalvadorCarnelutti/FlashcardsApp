@@ -8,41 +8,84 @@
 import SwiftUI
 import SwiftData
 
+// TODO: When removing a card update flashacards shown
 struct FlashcardCarouselViewModel: Hashable {
-    let flashcards: [Flashcard]
+    var flashcards: [Flashcard]
     let selectedFlashcard: Flashcard
+    let isEditing: Bool
     
-    init(flashcards: [Flashcard], selectedFlashcard: Flashcard) {
+    var initialFlashcardID: Flashcard.ID { selectedFlashcard.id }
+    
+    init(flashcards: [Flashcard], selectedFlashcard: Flashcard, isEditing: Bool) {
         self.flashcards = flashcards
         self.selectedFlashcard = selectedFlashcard
+        self.isEditing = isEditing
     }
 }
 
 struct FlashcardCarousel: View {
-    @State private var selectedFlashcardID: Flashcard.ID?
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) var dismiss
     
-    let flashcards: [Flashcard]
-    let initialFlashcardID: Flashcard.ID
+    @State private var selectedFlashcardID: Flashcard.ID?
+    @State var flashcards: [Flashcard]
+    var viewModel: FlashcardCarouselViewModel
     
     init(flashcardCarouselViewModel: FlashcardCarouselViewModel) {
-        flashcards = flashcardCarouselViewModel.flashcards
-        initialFlashcardID = flashcardCarouselViewModel.selectedFlashcard.id
+        viewModel = flashcardCarouselViewModel
+        self._flashcards = State(initialValue: flashcardCarouselViewModel.flashcards)
     }
-    
+
     var body: some View {
-        ScrollView(.horizontal) {
-            LazyHStack(spacing: 0) {
-                ForEach(flashcards) { flashcard in
-                    FlashcardView(flashcard: flashcard)
+        VStack {
+            ScrollView(.horizontal) {
+                LazyHStack(spacing: 0) {
+                    ForEach(flashcards) { flashcard in
+                        Group {
+                            if viewModel.isEditing {
+                                FlashcardEditorView(flashcard: flashcard)
+                            } else {
+                                FlashcardView(flashcard: flashcard)
+                            }
+                        }
                         .containerRelativeFrame(.horizontal)
+                    }
                 }
+                .scrollTargetLayout()
             }
-            .scrollTargetLayout()
+            if viewModel.isEditing {
+                Spacer()
+                Button(action: deleteFlashcard) {
+                    Text("Delete")
+                        .padding()
+                }
+                .buttonStyle(.borderedProminent)
+            }
         }
         .scrollPosition(id: $selectedFlashcardID)
         .scrollIndicators(.hidden)
         .scrollTargetBehavior(.paging)
-        .onAppear { selectedFlashcardID = initialFlashcardID }
+        .onAppear { selectedFlashcardID = viewModel.initialFlashcardID }
+        .navigationTitle(viewModel.isEditing ? "Edit Mode" : "Read mode")
+    }
+
+    
+    private func deleteFlashcard() {
+        if let selectedIndex = flashcards.firstIndex(where: { $0.id == selectedFlashcardID }) {
+            withAnimation {
+                modelContext.delete(flashcards[selectedIndex])
+                flashcards.remove(at: selectedIndex)
+                
+                guard flashcards.isNotEmpty else {
+                    dismiss()
+                    return
+                }
+                
+                let newSelectedIndex = selectedIndex < flashcards.count ? selectedIndex : selectedIndex.advanced(by: -1)
+                selectedFlashcardID = flashcards[newSelectedIndex].id
+
+            }   
+        }
     }
 }
 

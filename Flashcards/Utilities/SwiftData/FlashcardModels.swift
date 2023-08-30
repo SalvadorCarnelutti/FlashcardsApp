@@ -12,7 +12,7 @@ import SwiftUI
 @Model
 final class Category {
     @Attribute(.unique) var name: String
-    @Relationship(deleteRule: .cascade) var decks: [Deck]
+    var decks: [Deck]
     let colorName: String
     
     init(name: String, decks: [Deck] = [], color: String) {
