@@ -22,6 +22,7 @@ struct DeckGalleryView: View {
     @State var isNewCategoryFormPresented: Bool = false
     @State var isEditCategoryFormPresented: Bool = false
     
+    @State private var wiggles = false
     init(deck: Deck) {
         self.deck = deck
         // Workaround as of Xcode 15.6, SwiftData doesn't allow dynamic queries
@@ -55,6 +56,7 @@ struct DeckGalleryView: View {
                 }
                 .onTapGesture {
                     isEditCategoryFormPresented = true
+                    wiggles.toggle()
                 }
             }
             .padding()
@@ -75,6 +77,8 @@ struct DeckGalleryView: View {
                     } label: {
                         Text(flashcard.prompt)
                     }
+                    .rotationEffect(.degrees(wiggles ? 2 : 0))
+                    .animation(wiggles ? .easeInOut(duration: 0.15).repeatForever(autoreverses: true) : .default, value: wiggles)
                 }
             }
         }
@@ -91,6 +95,9 @@ struct DeckGalleryView: View {
         }
         .environment(\.editMode, $editMode)
         .navigationTitle(deck.name)
+        .onChange(of: editMode) {
+            wiggles = editMode.isEditing
+        }
     }
     
     private func addFlashcard() {

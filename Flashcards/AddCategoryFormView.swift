@@ -39,7 +39,7 @@ struct AddCategoryFormView: View {
                 addCategory(addCategoryFormViewModel.getCategory)
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
-            .disabled(addCategoryFormViewModel.categoryName.isEmpty)
+            .disabled(addCategoryFormViewModel.categoryName.isTrimmedEmpty)
         }
         TextField(text: $addCategoryFormViewModel.categoryName) {
             Text("Category name")
@@ -100,11 +100,11 @@ struct AddCategoryFormView: View {
 
 // TODO: Once SwiftData preview get fixed add preview
 struct ChooseCategoryPicker: View {
-    let selectedIndex: Binding<Int>
+    @Binding var selectedIndex: Int
     let categories: [Category]
     
     var body: some View {
-        Picker("Select category", selection: selectedIndex) {
+        Picker("Select category", selection: $selectedIndex) {
             ForEach(Array(categories.enumerated()), id: \.element) { index, category in
                 HStack {
                     Text(category.name.capitalized)

@@ -53,8 +53,8 @@ struct AddDeckFormView: View {
                     }
                     AddDeckCategoryView(categories: categories,
                                         isNewCategoryFormPresented: $isNewCategoryFormPresented,
-                                        addCategoryFormViewModel: AddCategoryFormViewModel(),
-                                        selectedIndex: $selectedIndex)
+                                        selectedIndex: $selectedIndex,
+                                        addCategoryFormViewModel: AddCategoryFormViewModel())
                     .disabled(skipsCategory)
                 }
                 
@@ -104,8 +104,8 @@ struct AddDeckCategoryView: View {
     let categories: [Category]
     
     @Binding var isNewCategoryFormPresented: Bool
-    let addCategoryFormViewModel: AddCategoryFormViewModel
     @Binding var selectedIndex: Int
+    let addCategoryFormViewModel: AddCategoryFormViewModel
     
     @State var isCategoryAlertPresented: Bool = false
     
@@ -141,12 +141,12 @@ struct AddDeckCategoryView: View {
         
         withAnimation {
             modelContext.insert(category)
+            // Insertion is not immediate, decks take a moment to update
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 , execute: {
+                selectedIndex = categories.firstIndex(of: category) ?? 0
+            })
         }
         
-        // Insertion is not immediate, decks take a moment to update
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 , execute: {
-            selectedIndex = categories.firstIndex(of: category) ?? 0
-        })
         isNewCategoryFormPresented = false
     }
 }
