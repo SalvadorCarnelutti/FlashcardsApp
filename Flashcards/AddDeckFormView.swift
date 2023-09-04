@@ -139,12 +139,16 @@ struct AddDeckCategoryView: View {
             return
         }
         
+        let newInsertIndex = if let insertionIndex = categories.firstIndex(where: { $0.name >= category.name }) {
+            insertionIndex
+        } else {
+            // If the new category name is greater than all existing ones, insert it at the end
+            categories.count
+        }
+        
         withAnimation {
             modelContext.insert(category)
-            // Insertion is not immediate, decks take a moment to update
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 , execute: {
-                selectedIndex = categories.firstIndex(of: category) ?? 0
-            })
+            selectedIndex = newInsertIndex
         }
         
         isNewCategoryFormPresented = false

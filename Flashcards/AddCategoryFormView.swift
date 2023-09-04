@@ -115,7 +115,8 @@ struct ChooseCategoryPicker: View {
                     }
                 }.tag(index)
             }
-        }.id(categories)
-            .pickerStyle(.navigationLink)
+        }
+        .id(categories)
+        .pickerStyle(.navigationLink)
     }
 }
