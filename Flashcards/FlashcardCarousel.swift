@@ -8,7 +8,6 @@
 import SwiftUI
 import SwiftData
 
-// TODO: When removing a card update flashacards shown
 struct FlashcardCarouselViewModel: Hashable {
     var flashcards: [Flashcard]
     let selectedFlashcard: Flashcard
@@ -68,7 +67,6 @@ struct FlashcardCarousel: View {
         .onAppear { selectedFlashcardID = viewModel.initialFlashcardID }
         .navigationTitle(viewModel.isEditing ? "Edit Mode" : "Read mode")
     }
-
     
     private func deleteFlashcard() {
         if let selectedIndex = flashcards.firstIndex(where: { $0.id == selectedFlashcardID }) {
@@ -83,7 +81,6 @@ struct FlashcardCarousel: View {
                 
                 let newSelectedIndex = selectedIndex < flashcards.count ? selectedIndex : selectedIndex.advanced(by: -1)
                 selectedFlashcardID = flashcards[newSelectedIndex].id
-
             }   
         }
     }
