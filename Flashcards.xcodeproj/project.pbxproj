@@ -147,6 +147,26 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		B4B4E1C32AAA86C400D4ECF4 /* FlashcardCarouselScreen */ = {
+			isa = PBXGroup;
+			children = (
+				B4599C412A9947CF00BEF51F /* FlashcardCarouselScreen.swift */,
+				B4A257C72A8C293600D2C995 /* FlashcardView.swift */,
+				B4E680602A8A891F008B1EAF /* FlashcardEditorView.swift */,
+				B4E680642A8ADB8B008B1EAF /* EditableFlashcardView.swift */,
+			);
+			path = FlashcardCarouselScreen;
+			sourceTree = "<group>";
+		};
+		B4B4E1C42AAA872700D4ECF4 /* DeckGalleryScreen */ = {
+			isa = PBXGroup;
+			children = (
+				B4A257CB2A8D0A6300D2C995 /* DeckGalleryScreen.swift */,
+				B4A257D22A8D40AB00D2C995 /* CardGalleryItemView.swift */,
+			);
+			path = DeckGalleryScreen;
+			sourceTree = "<group>";
+		};
 		B4E3C3D32A996DFB006E9E75 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,14 +201,10 @@
 				B4E680622A8ADB0A008B1EAF /* Utilities */,
 				B4E680322A899CBC008B1EAF /* FlashcardsApp.swift */,
 				B4E680342A899CBC008B1EAF /* DecksScreen.swift */,
-				B4A257CB2A8D0A6300D2C995 /* DeckGalleryScreen.swift */,
-				B4599C412A9947CF00BEF51F /* FlashcardCarouselScreen.swift */,
-				B4A257D22A8D40AB00D2C995 /* CardGalleryItemView.swift */,
 				B4E680662A8ADCB7008B1EAF /* AddCategoryFormScreen.swift */,
 				B4A257C92A8C452900D2C995 /* AddDeckFormScreen.swift */,
-				B4E680602A8A891F008B1EAF /* FlashcardEditorView.swift */,
-				B4E680642A8ADB8B008B1EAF /* EditableFlashcardView.swift */,
-				B4A257C72A8C293600D2C995 /* FlashcardView.swift */,
+				B4B4E1C42AAA872700D4ECF4 /* DeckGalleryScreen */,
+				B4B4E1C32AAA86C400D4ECF4 /* FlashcardCarouselScreen */,
 				B4E3C3DA2AAA705B006E9E75 /* CategoriesScreen.swift */,
 				B4E680362A899CBD008B1EAF /* Assets.xcassets */,
 				B4E680382A899CBD008B1EAF /* Preview Content */,
