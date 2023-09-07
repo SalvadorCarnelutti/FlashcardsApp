@@ -63,7 +63,7 @@ struct DeckGalleryScreen: View {
             
             LazyVGrid(columns: Self.columns, spacing: 20) {
                 CardGalleryItemView(backgroundStyle: deck.flashcardBackgroundColor, action: addFlashcard) {
-                    LabeledContent("Add Card") {
+                    LabeledContent("Add flashcard") {
                         Image(systemName: "plus")
                             .imageScale(.large)
                     }
