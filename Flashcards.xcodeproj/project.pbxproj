@@ -21,6 +21,7 @@
 		B4A257DB2A9274A400D2C995 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257DA2A9274A400D2C995 /* Array.swift */; };
 		B4E3C3D52A996E03006E9E75 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E3C3D42A996E03006E9E75 /* Router.swift */; };
 		B4E3C3D72A9FB99B006E9E75 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E3C3D62A9FB99B006E9E75 /* View.swift */; };
+		B4E3C3DB2AAA705B006E9E75 /* CategoriesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E3C3DA2AAA705B006E9E75 /* CategoriesScreen.swift */; };
 		B4E680332A899CBC008B1EAF /* FlashcardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680322A899CBC008B1EAF /* FlashcardsApp.swift */; };
 		B4E680352A899CBC008B1EAF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680342A899CBC008B1EAF /* HomeView.swift */; };
 		B4E680372A899CBD008B1EAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E680362A899CBD008B1EAF /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 		B4A257DA2A9274A400D2C995 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		B4E3C3D42A996E03006E9E75 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		B4E3C3D62A9FB99B006E9E75 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		B4E3C3DA2AAA705B006E9E75 /* CategoriesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesScreen.swift; sourceTree = "<group>"; };
 		B4E6802F2A899CBC008B1EAF /* Flashcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashcards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E680322A899CBC008B1EAF /* FlashcardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsApp.swift; sourceTree = "<group>"; };
 		B4E680342A899CBC008B1EAF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				B4E680602A8A891F008B1EAF /* FlashcardEditorView.swift */,
 				B4E680642A8ADB8B008B1EAF /* EditableFlashcard.swift */,
 				B4A257C72A8C293600D2C995 /* FlashcardView.swift */,
+				B4E3C3DA2AAA705B006E9E75 /* CategoriesScreen.swift */,
 				B4E680362A899CBD008B1EAF /* Assets.xcassets */,
 				B4E680382A899CBD008B1EAF /* Preview Content */,
 				B4E6805E2A8A8411008B1EAF /* Localizable.xcstrings */,
@@ -388,6 +391,7 @@
 				B4A257CE2A8D1C6D00D2C995 /* FlashcardSide.swift in Sources */,
 				B49EB99D2A8BF00F00D94D6E /* SampleDeck.swift in Sources */,
 				B4A257C82A8C293600D2C995 /* FlashcardView.swift in Sources */,
+				B4E3C3DB2AAA705B006E9E75 /* CategoriesScreen.swift in Sources */,
 				B4E680332A899CBC008B1EAF /* FlashcardsApp.swift in Sources */,
 				B4A257D92A8FDAC400D2C995 /* String.swift in Sources */,
 				B4E680672A8ADCB7008B1EAF /* AddCategoryFormView.swift in Sources */,

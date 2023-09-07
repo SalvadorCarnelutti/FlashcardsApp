@@ -29,7 +29,7 @@ struct HomeView: View {
                             deleteCategoryDecks(category: category, offsets: indexSet)
                         }
                     } header: {
-                        HStack{
+                        HStack {
                             Text(category.name.capitalized)
                             Image(systemName: "rectangle.fill")
                                 .foregroundStyle(FlashcardColor(rawValue: category.colorName)!.color)
@@ -88,7 +88,7 @@ struct HomeView: View {
         }
     }
     
-    func toggleForm() {
+    private func toggleForm() {
         isFormPresented.toggle()
     }
 }

@@ -14,21 +14,33 @@ struct FlashcardsApp: App {
 
     var body: some Scene {
         WindowGroup {
-            NavigationStack(path: $router.navigationPathPath) {
-                HomeView()
-                    .navigationDestination(for: Router.Route.self) { route in
-                        switch route {
-                        case let .flashcardsGalleryView(deck):
-                            DeckGalleryView(deck: deck)
-                        case let .flashcardCarousel(flashcardCarouselViewModel):
-                            FlashcardCarousel(flashcardCarouselViewModel: flashcardCarouselViewModel)
-                            // TODO: Change for proper implementations
-                        case let .flashcard(flashcard):
-                            FlashcardView(flashcard: flashcard)
-                        default:
-                            EmptyView()
+            TabView {
+                NavigationStack(path: $router.navigationPathPath) {
+                    HomeView()
+                        .navigationDestination(for: Router.Route.self) { route in
+                            switch route {
+                            case let .flashcardsGalleryView(deck):
+                                DeckGalleryView(deck: deck)
+                            case let .flashcardCarousel(flashcardCarouselViewModel):
+                                FlashcardCarousel(flashcardCarouselViewModel: flashcardCarouselViewModel)
+                                // TODO: Change for proper implementations
+                            case let .flashcard(flashcard):
+                                FlashcardView(flashcard: flashcard)
+                            default:
+                                EmptyView()
+                            }
                         }
-                    }
+                }
+                .tabItem {
+                    Label("Decks", systemImage: "rectangle.stack.fill")
+                }
+                
+                NavigationStack(path: $router.navigationPathPath) {
+                    CategoriesScreen()
+                }
+                .tabItem {
+                    Label("Categories", systemImage: "tag.fill")
+                }
             }
             .environmentObject(router)
         }

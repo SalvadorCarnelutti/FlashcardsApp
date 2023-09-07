@@ -121,7 +121,6 @@ struct AddDeckCategoryView: View {
         }
         .sheet(isPresented: $isNewCategoryFormPresented) {
             AddCategoryFormView(isAlertPresented: $isCategoryAlertPresented,
-                                isPresented: $isNewCategoryFormPresented,
                                 addCategoryFormViewModel: addCategoryFormViewModel,
                                 addCategory: addCategory)
             .presentationDetents([.medium])

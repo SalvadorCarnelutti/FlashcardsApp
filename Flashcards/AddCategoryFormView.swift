@@ -26,7 +26,6 @@ struct AddCategoryFormView: View {
     
     @State var isFormPresented: Bool = false
     @Binding var isAlertPresented: Bool
-    @Binding var isPresented: Bool
     
     @Bindable var addCategoryFormViewModel: AddCategoryFormViewModel
     @FocusState private var categoryNameFieldIsFocused: Bool
@@ -92,7 +91,6 @@ struct AddCategoryFormView: View {
 
 #Preview {
     AddCategoryFormView(isAlertPresented: .constant(false),
-                        isPresented: .constant(true),
                         addCategoryFormViewModel: AddCategoryFormViewModel(),
                         addCategory: { _ in })
     .padding()
