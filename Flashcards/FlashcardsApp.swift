@@ -15,7 +15,7 @@ struct FlashcardsApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                NavigationStack(path: $router.navigationPathPath) {
+                NavigationStack(path: $router.navigationPath) {
                     DecksScreen()
                         .navigationDestination(for: Router.Route.self) { route in
                             switch route {
@@ -35,7 +35,7 @@ struct FlashcardsApp: App {
                     Label("Decks", systemImage: "rectangle.stack.fill")
                 }
                 
-                NavigationStack(path: $router.navigationPathPath) {
+                NavigationStack(path: $router.navigationPath) {
                     CategoriesScreen()
                 }
                 .tabItem {

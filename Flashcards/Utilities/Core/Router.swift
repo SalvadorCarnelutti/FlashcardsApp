@@ -16,17 +16,17 @@ final class Router: ObservableObject {
         case flashcard(Flashcard)
     }
     
-    @Published var navigationPathPath = NavigationPath()
+    @Published var navigationPath = NavigationPath()
     
     func navigate(to route: Route) {
-        navigationPathPath.append(route)
+        navigationPath.append(route)
     }
     
     func navigateBack() {
-        navigationPathPath.removeLast()
+        navigationPath.removeLast()
     }
     
     func navigateToRoot() {
-        navigationPathPath.removeLast(navigationPathPath.count)
+        navigationPath.removeLast(navigationPath.count)
     }
 }
