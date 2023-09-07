@@ -18,7 +18,7 @@ import Observation
     }
 }
 
-struct AddCategoryFormView: View {
+struct AddCategoryFormScreen: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     
@@ -90,9 +90,9 @@ struct AddCategoryFormView: View {
 }
 
 #Preview {
-    AddCategoryFormView(isAlertPresented: .constant(false),
-                        addCategoryFormViewModel: AddCategoryFormViewModel(),
-                        addCategory: { _ in })
+    AddCategoryFormScreen(isAlertPresented: .constant(false),
+                          addCategoryFormViewModel: AddCategoryFormViewModel(),
+                          addCategory: { _ in })
     .padding()
 }
 

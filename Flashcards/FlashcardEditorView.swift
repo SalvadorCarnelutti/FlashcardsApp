@@ -22,9 +22,9 @@ struct FlashcardEditorView: View {
              _focusedField refers to the property wrapper.
              $focusedField refers to the property wrapper's projected value; in the case of @FocusState, that is a Binding.
              */
-            EditableFlashcard(flashcardViewModel: EditableFlashcardViewModel(flashcardSide: .front, flashcard: flashcard),
+            EditableFlashcardView(flashcardViewModel: EditableFlashcardViewModel(flashcardSide: .front, flashcard: flashcard),
                                   focusedField: _focusedField)
-            EditableFlashcard(flashcardViewModel: EditableFlashcardViewModel(flashcardSide: .back, flashcard: flashcard),
+            EditableFlashcardView(flashcardViewModel: EditableFlashcardViewModel(flashcardSide: .back, flashcard: flashcard),
                                   focusedField: _focusedField)
             
             /*

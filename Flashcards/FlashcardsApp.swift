@@ -16,13 +16,13 @@ struct FlashcardsApp: App {
         WindowGroup {
             TabView {
                 NavigationStack(path: $router.navigationPathPath) {
-                    HomeView()
+                    DecksScreen()
                         .navigationDestination(for: Router.Route.self) { route in
                             switch route {
                             case let .flashcardsGalleryView(deck):
-                                DeckGalleryView(deck: deck)
+                                DeckGalleryScreen(deck: deck)
                             case let .flashcardCarousel(flashcardCarouselViewModel):
-                                FlashcardCarousel(flashcardCarouselViewModel: flashcardCarouselViewModel)
+                                FlashcardCarouselScreen(flashcardCarouselViewModel: flashcardCarouselViewModel)
                                 // TODO: Change for proper implementations
                             case let .flashcard(flashcard):
                                 FlashcardView(flashcard: flashcard)

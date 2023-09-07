@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B4599C422A9947CF00BEF51F /* FlashcardCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4599C412A9947CF00BEF51F /* FlashcardCarousel.swift */; };
+		B4599C422A9947CF00BEF51F /* FlashcardCarouselScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4599C412A9947CF00BEF51F /* FlashcardCarouselScreen.swift */; };
 		B49EB9992A8BEE2900D94D6E /* FlashcardColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EB9982A8BEE2900D94D6E /* FlashcardColor.swift */; };
 		B49EB99B2A8BEFF300D94D6E /* PreviewSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EB99A2A8BEFF300D94D6E /* PreviewSampleData.swift */; };
 		B49EB99D2A8BF00F00D94D6E /* SampleDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EB99C2A8BF00F00D94D6E /* SampleDeck.swift */; };
 		B4A257C82A8C293600D2C995 /* FlashcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257C72A8C293600D2C995 /* FlashcardView.swift */; };
-		B4A257CA2A8C452900D2C995 /* AddDeckFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257C92A8C452900D2C995 /* AddDeckFormView.swift */; };
-		B4A257CC2A8D0A6300D2C995 /* DeckGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257CB2A8D0A6300D2C995 /* DeckGalleryView.swift */; };
+		B4A257CA2A8C452900D2C995 /* AddDeckFormScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257C92A8C452900D2C995 /* AddDeckFormScreen.swift */; };
+		B4A257CC2A8D0A6300D2C995 /* DeckGalleryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257CB2A8D0A6300D2C995 /* DeckGalleryScreen.swift */; };
 		B4A257CE2A8D1C6D00D2C995 /* FlashcardSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257CD2A8D1C6D00D2C995 /* FlashcardSide.swift */; };
 		B4A257D12A8D3B1D00D2C995 /* CardContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257D02A8D3B1D00D2C995 /* CardContainer.swift */; };
-		B4A257D32A8D40AB00D2C995 /* CardGalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257D22A8D40AB00D2C995 /* CardGalleryItem.swift */; };
+		B4A257D32A8D40AB00D2C995 /* CardGalleryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257D22A8D40AB00D2C995 /* CardGalleryItemView.swift */; };
 		B4A257D92A8FDAC400D2C995 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257D82A8FDAC400D2C995 /* String.swift */; };
 		B4A257DB2A9274A400D2C995 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257DA2A9274A400D2C995 /* Array.swift */; };
 		B4E3C3D52A996E03006E9E75 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E3C3D42A996E03006E9E75 /* Router.swift */; };
 		B4E3C3D72A9FB99B006E9E75 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E3C3D62A9FB99B006E9E75 /* View.swift */; };
 		B4E3C3DB2AAA705B006E9E75 /* CategoriesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E3C3DA2AAA705B006E9E75 /* CategoriesScreen.swift */; };
 		B4E680332A899CBC008B1EAF /* FlashcardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680322A899CBC008B1EAF /* FlashcardsApp.swift */; };
-		B4E680352A899CBC008B1EAF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680342A899CBC008B1EAF /* HomeView.swift */; };
+		B4E680352A899CBC008B1EAF /* DecksScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680342A899CBC008B1EAF /* DecksScreen.swift */; };
 		B4E680372A899CBD008B1EAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E680362A899CBD008B1EAF /* Assets.xcassets */; };
 		B4E6803A2A899CBD008B1EAF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E680392A899CBD008B1EAF /* Preview Assets.xcassets */; };
 		B4E6803C2A899CBD008B1EAF /* FlashcardModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6803B2A899CBD008B1EAF /* FlashcardModels.swift */; };
@@ -32,8 +32,8 @@
 		B4E680522A899CBD008B1EAF /* FlashcardsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680512A899CBD008B1EAF /* FlashcardsUITestsLaunchTests.swift */; };
 		B4E6805F2A8A8411008B1EAF /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B4E6805E2A8A8411008B1EAF /* Localizable.xcstrings */; };
 		B4E680612A8A891F008B1EAF /* FlashcardEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680602A8A891F008B1EAF /* FlashcardEditorView.swift */; };
-		B4E680652A8ADB8B008B1EAF /* EditableFlashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680642A8ADB8B008B1EAF /* EditableFlashcard.swift */; };
-		B4E680672A8ADCB7008B1EAF /* AddCategoryFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680662A8ADCB7008B1EAF /* AddCategoryFormView.swift */; };
+		B4E680652A8ADB8B008B1EAF /* EditableFlashcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680642A8ADB8B008B1EAF /* EditableFlashcardView.swift */; };
+		B4E680672A8ADCB7008B1EAF /* AddCategoryFormScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E680662A8ADCB7008B1EAF /* AddCategoryFormScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,16 +54,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B4599C412A9947CF00BEF51F /* FlashcardCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardCarousel.swift; sourceTree = "<group>"; };
+		B4599C412A9947CF00BEF51F /* FlashcardCarouselScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardCarouselScreen.swift; sourceTree = "<group>"; };
 		B49EB9982A8BEE2900D94D6E /* FlashcardColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardColor.swift; sourceTree = "<group>"; };
 		B49EB99A2A8BEFF300D94D6E /* PreviewSampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSampleData.swift; sourceTree = "<group>"; };
 		B49EB99C2A8BF00F00D94D6E /* SampleDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleDeck.swift; sourceTree = "<group>"; };
 		B4A257C72A8C293600D2C995 /* FlashcardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardView.swift; sourceTree = "<group>"; };
-		B4A257C92A8C452900D2C995 /* AddDeckFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeckFormView.swift; sourceTree = "<group>"; };
-		B4A257CB2A8D0A6300D2C995 /* DeckGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckGalleryView.swift; sourceTree = "<group>"; };
+		B4A257C92A8C452900D2C995 /* AddDeckFormScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeckFormScreen.swift; sourceTree = "<group>"; };
+		B4A257CB2A8D0A6300D2C995 /* DeckGalleryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckGalleryScreen.swift; sourceTree = "<group>"; };
 		B4A257CD2A8D1C6D00D2C995 /* FlashcardSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardSide.swift; sourceTree = "<group>"; };
 		B4A257D02A8D3B1D00D2C995 /* CardContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContainer.swift; sourceTree = "<group>"; };
-		B4A257D22A8D40AB00D2C995 /* CardGalleryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGalleryItem.swift; sourceTree = "<group>"; };
+		B4A257D22A8D40AB00D2C995 /* CardGalleryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGalleryItemView.swift; sourceTree = "<group>"; };
 		B4A257D82A8FDAC400D2C995 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		B4A257DA2A9274A400D2C995 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		B4E3C3D42A996E03006E9E75 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 		B4E3C3DA2AAA705B006E9E75 /* CategoriesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesScreen.swift; sourceTree = "<group>"; };
 		B4E6802F2A899CBC008B1EAF /* Flashcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashcards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E680322A899CBC008B1EAF /* FlashcardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsApp.swift; sourceTree = "<group>"; };
-		B4E680342A899CBC008B1EAF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		B4E680342A899CBC008B1EAF /* DecksScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksScreen.swift; sourceTree = "<group>"; };
 		B4E680362A899CBD008B1EAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4E680392A899CBD008B1EAF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B4E6803B2A899CBD008B1EAF /* FlashcardModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardModels.swift; sourceTree = "<group>"; };
@@ -82,8 +82,8 @@
 		B4E680512A899CBD008B1EAF /* FlashcardsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B4E6805E2A8A8411008B1EAF /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		B4E680602A8A891F008B1EAF /* FlashcardEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardEditorView.swift; sourceTree = "<group>"; };
-		B4E680642A8ADB8B008B1EAF /* EditableFlashcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableFlashcard.swift; sourceTree = "<group>"; };
-		B4E680662A8ADCB7008B1EAF /* AddCategoryFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryFormView.swift; sourceTree = "<group>"; };
+		B4E680642A8ADB8B008B1EAF /* EditableFlashcardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableFlashcardView.swift; sourceTree = "<group>"; };
+		B4E680662A8ADCB7008B1EAF /* AddCategoryFormScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryFormScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,14 +180,14 @@
 			children = (
 				B4E680622A8ADB0A008B1EAF /* Utilities */,
 				B4E680322A899CBC008B1EAF /* FlashcardsApp.swift */,
-				B4E680342A899CBC008B1EAF /* HomeView.swift */,
-				B4A257CB2A8D0A6300D2C995 /* DeckGalleryView.swift */,
-				B4599C412A9947CF00BEF51F /* FlashcardCarousel.swift */,
-				B4A257D22A8D40AB00D2C995 /* CardGalleryItem.swift */,
-				B4E680662A8ADCB7008B1EAF /* AddCategoryFormView.swift */,
-				B4A257C92A8C452900D2C995 /* AddDeckFormView.swift */,
+				B4E680342A899CBC008B1EAF /* DecksScreen.swift */,
+				B4A257CB2A8D0A6300D2C995 /* DeckGalleryScreen.swift */,
+				B4599C412A9947CF00BEF51F /* FlashcardCarouselScreen.swift */,
+				B4A257D22A8D40AB00D2C995 /* CardGalleryItemView.swift */,
+				B4E680662A8ADCB7008B1EAF /* AddCategoryFormScreen.swift */,
+				B4A257C92A8C452900D2C995 /* AddDeckFormScreen.swift */,
 				B4E680602A8A891F008B1EAF /* FlashcardEditorView.swift */,
-				B4E680642A8ADB8B008B1EAF /* EditableFlashcard.swift */,
+				B4E680642A8ADB8B008B1EAF /* EditableFlashcardView.swift */,
 				B4A257C72A8C293600D2C995 /* FlashcardView.swift */,
 				B4E3C3DA2AAA705B006E9E75 /* CategoriesScreen.swift */,
 				B4E680362A899CBD008B1EAF /* Assets.xcassets */,
@@ -374,27 +374,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4A257D32A8D40AB00D2C995 /* CardGalleryItem.swift in Sources */,
-				B4A257CC2A8D0A6300D2C995 /* DeckGalleryView.swift in Sources */,
+				B4A257D32A8D40AB00D2C995 /* CardGalleryItemView.swift in Sources */,
+				B4A257CC2A8D0A6300D2C995 /* DeckGalleryScreen.swift in Sources */,
 				B49EB99B2A8BEFF300D94D6E /* PreviewSampleData.swift in Sources */,
 				B4A257DB2A9274A400D2C995 /* Array.swift in Sources */,
-				B4E680352A899CBC008B1EAF /* HomeView.swift in Sources */,
+				B4E680352A899CBC008B1EAF /* DecksScreen.swift in Sources */,
 				B4A257D12A8D3B1D00D2C995 /* CardContainer.swift in Sources */,
 				B4E3C3D52A996E03006E9E75 /* Router.swift in Sources */,
-				B4E680652A8ADB8B008B1EAF /* EditableFlashcard.swift in Sources */,
+				B4E680652A8ADB8B008B1EAF /* EditableFlashcardView.swift in Sources */,
 				B4E680612A8A891F008B1EAF /* FlashcardEditorView.swift in Sources */,
-				B4A257CA2A8C452900D2C995 /* AddDeckFormView.swift in Sources */,
+				B4A257CA2A8C452900D2C995 /* AddDeckFormScreen.swift in Sources */,
 				B4E6803C2A899CBD008B1EAF /* FlashcardModels.swift in Sources */,
 				B49EB9992A8BEE2900D94D6E /* FlashcardColor.swift in Sources */,
 				B4E3C3D72A9FB99B006E9E75 /* View.swift in Sources */,
-				B4599C422A9947CF00BEF51F /* FlashcardCarousel.swift in Sources */,
+				B4599C422A9947CF00BEF51F /* FlashcardCarouselScreen.swift in Sources */,
 				B4A257CE2A8D1C6D00D2C995 /* FlashcardSide.swift in Sources */,
 				B49EB99D2A8BF00F00D94D6E /* SampleDeck.swift in Sources */,
 				B4A257C82A8C293600D2C995 /* FlashcardView.swift in Sources */,
 				B4E3C3DB2AAA705B006E9E75 /* CategoriesScreen.swift in Sources */,
 				B4E680332A899CBC008B1EAF /* FlashcardsApp.swift in Sources */,
 				B4A257D92A8FDAC400D2C995 /* String.swift in Sources */,
-				B4E680672A8ADCB7008B1EAF /* AddCategoryFormView.swift in Sources */,
+				B4E680672A8ADCB7008B1EAF /* AddCategoryFormScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

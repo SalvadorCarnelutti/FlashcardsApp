@@ -1,5 +1,5 @@
 //
-//  EditableFlashcard.swift
+//  EditableFlashcardView.swift
 //  Flashcards
 //
 //  Created by Salvador on 8/14/23.
@@ -22,7 +22,7 @@ final class EditableFlashcardViewModel: ObservableObject {
     }
 }
 
-struct EditableFlashcard: View {
+struct EditableFlashcardView: View {
     @ObservedObject var flashcardViewModel: EditableFlashcardViewModel
     @FocusState var focusedField: FlashcardSide?
     
@@ -57,5 +57,5 @@ struct EditableFlashcard: View {
 #Preview {
     let flashcardViewModel = EditableFlashcardViewModel(flashcardSide: .front, flashcard: SampleDeck.flashcard)
     
-    return EditableFlashcard(flashcardViewModel: flashcardViewModel)
+    return EditableFlashcardView(flashcardViewModel: flashcardViewModel)
 }

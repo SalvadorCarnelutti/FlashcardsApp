@@ -1,5 +1,5 @@
 //
-//  AddDeckFormViewModel.swift
+//  AddDeckFormScreen.swift
 //  Flashcards
 //
 //  Created by Salvador on 8/15/23.
@@ -21,7 +21,7 @@ import Observation
     }
 }
 
-struct AddDeckFormView: View {
+struct AddDeckFormScreen: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     
@@ -96,7 +96,7 @@ struct AddDeckFormView: View {
 }
 
 #Preview {
-    AddDeckFormView()
+    AddDeckFormScreen()
 }
 
 struct AddDeckCategoryView: View {
@@ -120,9 +120,9 @@ struct AddDeckCategoryView: View {
             }
         }
         .sheet(isPresented: $isNewCategoryFormPresented) {
-            AddCategoryFormView(isAlertPresented: $isCategoryAlertPresented,
-                                addCategoryFormViewModel: addCategoryFormViewModel,
-                                addCategory: addCategory)
+            AddCategoryFormScreen(isAlertPresented: $isCategoryAlertPresented,
+                                  addCategoryFormViewModel: addCategoryFormViewModel,
+                                  addCategory: addCategory)
             .presentationDetents([.medium])
             .padding()
         }

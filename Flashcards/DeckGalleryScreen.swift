@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 import Combine
 
-struct DeckGalleryView: View {
+struct DeckGalleryScreen: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var router: Router
     let columns = [GridItem(.adaptive(minimum: 150))]
@@ -61,7 +61,7 @@ struct DeckGalleryView: View {
             .padding()
             
             LazyVGrid(columns: columns, spacing: 20) {
-                CardGalleryItem(backgroundStyle: deck.flashcardBackgroundColor, action: addFlashcard) {
+                CardGalleryItemView(backgroundStyle: deck.flashcardBackgroundColor, action: addFlashcard) {
                     LabeledContent("Add Card") {
                         Image(systemName: "plus")
                             .imageScale(.large)
@@ -71,7 +71,7 @@ struct DeckGalleryView: View {
                 .shadow(radius: 2)
                 
                 ForEach(flashcards) { flashcard in
-                    CardGalleryItem(backgroundStyle: deck.flashcardBackgroundColor.opacity(0.9)) {
+                    CardGalleryItemView(backgroundStyle: deck.flashcardBackgroundColor.opacity(0.9)) {
                         selectFlashcard(flashcard)
                     } label: {
                         Text(flashcard.prompt)
@@ -126,7 +126,7 @@ struct DeckGalleryView: View {
 
 #Preview {
     MainActor.assumeIsolated {
-        DeckGalleryView(deck: Deck(name: "Japanese"))
+        DeckGalleryScreen(deck: Deck(name: "Japanese"))
         .modelContainer(previewContainer)
     }
 }
@@ -177,9 +177,9 @@ struct EditDeckCategoryView: View {
                         }
                     }
                     .sheet(isPresented: $isNewCategoryFormPresented) {
-                        AddCategoryFormView(isAlertPresented: $isCategoryAlertPresented,
-                                            addCategoryFormViewModel: addCategoryFormViewModel,
-                                            addCategory: addCategory)
+                        AddCategoryFormScreen(isAlertPresented: $isCategoryAlertPresented,
+                                              addCategoryFormViewModel: addCategoryFormViewModel,
+                                              addCategory: addCategory)
                         .presentationDetents([.medium])
                         .padding()
                     }

@@ -1,5 +1,5 @@
 //
-//  FlashcardCarousel.swift
+//  FlashcardCarouselScreen.swift
 //  Flashcards
 //
 //  Created by Salvador on 8/25/23.
@@ -22,7 +22,7 @@ struct FlashcardCarouselViewModel: Hashable {
     }
 }
 
-struct FlashcardCarousel: View {
+struct FlashcardCarouselScreen: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     

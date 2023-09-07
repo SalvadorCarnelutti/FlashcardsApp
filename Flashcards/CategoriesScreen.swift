@@ -50,9 +50,9 @@ struct CategoriesScreen: View {
             }
         }
         .sheet(isPresented: $isFormPresented) {
-            AddCategoryFormView(isAlertPresented: $isCategoryAlertPresented,
-                                addCategoryFormViewModel: AddCategoryFormViewModel(),
-                                addCategory: addCategory)
+            AddCategoryFormScreen(isAlertPresented: $isCategoryAlertPresented,
+                                  addCategoryFormViewModel: AddCategoryFormViewModel(),
+                                  addCategory: addCategory)
             .presentationDetents([.medium])
             .padding()
         }

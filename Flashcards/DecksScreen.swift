@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  DecksScreen.swift
 //  Flashcards
 //
 //  Created by Salvador on 8/13/23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct HomeView: View {
+struct DecksScreen: View {
     @Environment(\.modelContext) private var modelContext
     @Query(filter: #Predicate<Category> { $0.decks.count > 0 }, sort: \Category.name) private var categories: [Category]
     @Query(filter: #Predicate<Deck> { $0.category == nil }) private var decks: [Deck]
@@ -49,9 +49,6 @@ struct HomeView: View {
                     EditButton()
                 }
                 ToolbarItem {
-//                    NavigationLink(destination: AddFlashcardView()) {
-//                        Label("Add category", systemImage: "plus")
-//                    }
                     Button(action: toggleForm) {
                         Label("Add category", systemImage: "plus")
                     }
@@ -68,7 +65,7 @@ struct HomeView: View {
                 }
             }
             .sheet(isPresented: $isFormPresented) {
-                AddDeckFormView()
+                AddDeckFormScreen()
             }
     }
     
@@ -94,13 +91,13 @@ struct HomeView: View {
 }
 
 #Preview("Empty") {
-    HomeView()
+    DecksScreen()
         .modelContainer(for: Category.self, inMemory: true)
 }
 
 #Preview("Non empty") {
     MainActor.assumeIsolated {
-        HomeView()
+        DecksScreen()
             .modelContainer(previewContainer)
     }
 }
