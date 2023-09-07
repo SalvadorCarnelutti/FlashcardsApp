@@ -56,7 +56,6 @@ struct DeckGalleryView: View {
                 }
                 .onTapGesture {
                     isEditCategoryFormPresented = true
-                    wiggles.toggle()
                 }
             }
             .padding()
