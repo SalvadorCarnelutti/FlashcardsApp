@@ -106,7 +106,6 @@ struct ChooseCategoryPicker: View {
             ForEach(Array(categories.enumerated()), id: \.element) { index, category in
                 HStack {
                     Text(category.name.capitalized)
-                    // TODO: Maybe change in such a way I don't compare strings
                     if !category.isClearColored {
                         Image(systemName: "rectangle.fill")
                             .foregroundStyle(FlashcardColor(rawValue: category.colorName)!.color)
