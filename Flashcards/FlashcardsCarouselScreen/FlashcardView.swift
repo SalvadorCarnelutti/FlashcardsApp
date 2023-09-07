@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FlashcardView: View {
     @State private var flipped = false
+    
     var front: Angle { flipped ? .degrees(180) : .degrees(0) }
     var back: Angle { flipped ? .degrees(0) : .degrees(-180) }
     

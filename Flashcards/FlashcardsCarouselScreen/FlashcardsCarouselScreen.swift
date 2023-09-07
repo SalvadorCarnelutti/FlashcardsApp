@@ -1,5 +1,5 @@
 //
-//  FlashcardCarouselScreen.swift
+//  FlashcardsCarouselScreen.swift
 //  Flashcards
 //
 //  Created by Salvador on 8/25/23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct FlashcardCarouselViewModel: Hashable {
+struct FlashcardsCarouselViewModel: Hashable {
     var flashcards: [Flashcard]
     let selectedFlashcard: Flashcard
     let isEditing: Bool
@@ -22,17 +22,18 @@ struct FlashcardCarouselViewModel: Hashable {
     }
 }
 
-struct FlashcardCarouselScreen: View {
+struct FlashcardsCarouselScreen: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     
     @State private var selectedFlashcardID: Flashcard.ID?
     @State var flashcards: [Flashcard]
-    var viewModel: FlashcardCarouselViewModel
     
-    init(flashcardCarouselViewModel: FlashcardCarouselViewModel) {
-        viewModel = flashcardCarouselViewModel
-        self._flashcards = State(initialValue: flashcardCarouselViewModel.flashcards)
+    var viewModel: FlashcardsCarouselViewModel
+    
+    init(flashcardsCarouselViewModel: FlashcardsCarouselViewModel) {
+        viewModel = flashcardsCarouselViewModel
+        self._flashcards = State(initialValue: flashcardsCarouselViewModel.flashcards)
     }
 
     var body: some View {
@@ -81,19 +82,19 @@ struct FlashcardCarouselScreen: View {
                 
                 let newSelectedIndex = selectedIndex < flashcards.count ? selectedIndex : selectedIndex.advanced(by: -1)
                 selectedFlashcardID = flashcards[newSelectedIndex].id
-            }   
+            }
         }
     }
 }
 
 //#Preview {
 //    var flashcards = [Flashcard]()
-//    
+//
 //    for deck in SampleDeck.decks {
 //        let flashcard = Flashcard(prompt: "Who did X?", answer: "X was done by Y", deck: deck)
 //        flashcards.append(flashcard)
 //    }
-//    
-//    return FlashcardCarousel(flashcards: flashcards)
+//
+//    return FlashcardsCarouselScreen(flashcards: flashcards)
 //        .modelContainer(previewContainer)
 //}

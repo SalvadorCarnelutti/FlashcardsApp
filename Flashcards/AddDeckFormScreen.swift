@@ -28,14 +28,15 @@ struct AddDeckFormScreen: View {
     @Query private var decks: [Deck]
     @Query(sort: \Category.name) private var categories: [Category]
     
-    @State private var addDeckFormViewModel = AddDeckFormViewModel()
-    private var addCategoryFormViewModel = AddCategoryFormViewModel()
     @FocusState private var deckNameFieldIsFocused: Bool
-            
+    
+    @State private var addDeckFormViewModel = AddDeckFormViewModel()
     @State var skipsCategory: Bool = false
     @State var selectedIndex: Int = 0
     @State var isNewCategoryFormPresented: Bool = false
     @State var isDeckAlertPresented: Bool = false
+    
+    private var addCategoryFormViewModel = AddCategoryFormViewModel()
     
     var body: some View {
         NavigationStack {

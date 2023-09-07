@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B4599C422A9947CF00BEF51F /* FlashcardCarouselScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4599C412A9947CF00BEF51F /* FlashcardCarouselScreen.swift */; };
 		B49EB9992A8BEE2900D94D6E /* FlashcardColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EB9982A8BEE2900D94D6E /* FlashcardColor.swift */; };
 		B49EB99B2A8BEFF300D94D6E /* PreviewSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EB99A2A8BEFF300D94D6E /* PreviewSampleData.swift */; };
 		B49EB99D2A8BF00F00D94D6E /* SampleDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EB99C2A8BF00F00D94D6E /* SampleDeck.swift */; };
@@ -19,6 +18,7 @@
 		B4A257D32A8D40AB00D2C995 /* CardGalleryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257D22A8D40AB00D2C995 /* CardGalleryItemView.swift */; };
 		B4A257D92A8FDAC400D2C995 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257D82A8FDAC400D2C995 /* String.swift */; };
 		B4A257DB2A9274A400D2C995 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A257DA2A9274A400D2C995 /* Array.swift */; };
+		B4B4E1C62AAA89D600D4ECF4 /* FlashcardsCarouselScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B4E1C52AAA89D600D4ECF4 /* FlashcardsCarouselScreen.swift */; };
 		B4E3C3D52A996E03006E9E75 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E3C3D42A996E03006E9E75 /* Router.swift */; };
 		B4E3C3D72A9FB99B006E9E75 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E3C3D62A9FB99B006E9E75 /* View.swift */; };
 		B4E3C3DB2AAA705B006E9E75 /* CategoriesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E3C3DA2AAA705B006E9E75 /* CategoriesScreen.swift */; };
@@ -54,7 +54,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B4599C412A9947CF00BEF51F /* FlashcardCarouselScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardCarouselScreen.swift; sourceTree = "<group>"; };
 		B49EB9982A8BEE2900D94D6E /* FlashcardColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardColor.swift; sourceTree = "<group>"; };
 		B49EB99A2A8BEFF300D94D6E /* PreviewSampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSampleData.swift; sourceTree = "<group>"; };
 		B49EB99C2A8BF00F00D94D6E /* SampleDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleDeck.swift; sourceTree = "<group>"; };
@@ -66,6 +65,7 @@
 		B4A257D22A8D40AB00D2C995 /* CardGalleryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGalleryItemView.swift; sourceTree = "<group>"; };
 		B4A257D82A8FDAC400D2C995 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		B4A257DA2A9274A400D2C995 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		B4B4E1C52AAA89D600D4ECF4 /* FlashcardsCarouselScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsCarouselScreen.swift; sourceTree = "<group>"; };
 		B4E3C3D42A996E03006E9E75 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		B4E3C3D62A9FB99B006E9E75 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		B4E3C3DA2AAA705B006E9E75 /* CategoriesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesScreen.swift; sourceTree = "<group>"; };
@@ -147,15 +147,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		B4B4E1C32AAA86C400D4ECF4 /* FlashcardCarouselScreen */ = {
+		B4B4E1C32AAA86C400D4ECF4 /* FlashcardsCarouselScreen */ = {
 			isa = PBXGroup;
 			children = (
-				B4599C412A9947CF00BEF51F /* FlashcardCarouselScreen.swift */,
+				B4B4E1C52AAA89D600D4ECF4 /* FlashcardsCarouselScreen.swift */,
 				B4A257C72A8C293600D2C995 /* FlashcardView.swift */,
 				B4E680602A8A891F008B1EAF /* FlashcardEditorView.swift */,
 				B4E680642A8ADB8B008B1EAF /* EditableFlashcardView.swift */,
 			);
-			path = FlashcardCarouselScreen;
+			path = FlashcardsCarouselScreen;
 			sourceTree = "<group>";
 		};
 		B4B4E1C42AAA872700D4ECF4 /* DeckGalleryScreen */ = {
@@ -204,7 +204,7 @@
 				B4E680662A8ADCB7008B1EAF /* AddCategoryFormScreen.swift */,
 				B4A257C92A8C452900D2C995 /* AddDeckFormScreen.swift */,
 				B4B4E1C42AAA872700D4ECF4 /* DeckGalleryScreen */,
-				B4B4E1C32AAA86C400D4ECF4 /* FlashcardCarouselScreen */,
+				B4B4E1C32AAA86C400D4ECF4 /* FlashcardsCarouselScreen */,
 				B4E3C3DA2AAA705B006E9E75 /* CategoriesScreen.swift */,
 				B4E680362A899CBD008B1EAF /* Assets.xcassets */,
 				B4E680382A899CBD008B1EAF /* Preview Content */,
@@ -398,12 +398,12 @@
 				B4A257D12A8D3B1D00D2C995 /* CardContainer.swift in Sources */,
 				B4E3C3D52A996E03006E9E75 /* Router.swift in Sources */,
 				B4E680652A8ADB8B008B1EAF /* EditableFlashcardView.swift in Sources */,
+				B4B4E1C62AAA89D600D4ECF4 /* FlashcardsCarouselScreen.swift in Sources */,
 				B4E680612A8A891F008B1EAF /* FlashcardEditorView.swift in Sources */,
 				B4A257CA2A8C452900D2C995 /* AddDeckFormScreen.swift in Sources */,
 				B4E6803C2A899CBD008B1EAF /* FlashcardModels.swift in Sources */,
 				B49EB9992A8BEE2900D94D6E /* FlashcardColor.swift in Sources */,
 				B4E3C3D72A9FB99B006E9E75 /* View.swift in Sources */,
-				B4599C422A9947CF00BEF51F /* FlashcardCarouselScreen.swift in Sources */,
 				B4A257CE2A8D1C6D00D2C995 /* FlashcardSide.swift in Sources */,
 				B49EB99D2A8BF00F00D94D6E /* SampleDeck.swift in Sources */,
 				B4A257C82A8C293600D2C995 /* FlashcardView.swift in Sources */,

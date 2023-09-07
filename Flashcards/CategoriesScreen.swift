@@ -17,44 +17,46 @@ struct CategoriesScreen: View {
     @State var isCategoryAlertPresented: Bool = false
     
     var body: some View {
-        List {
-            ForEach(categories) { category in
-                HStack {
-                    Text(category.name.capitalized)
-                    Image(systemName: "rectangle.fill")
-                        .foregroundStyle(FlashcardColor(rawValue: category.colorName)!.color)
+        NavigationStack {
+            List {
+                ForEach(categories) { category in
+                    HStack {
+                        Text(category.name.capitalized)
+                        Image(systemName: "rectangle.fill")
+                            .foregroundStyle(FlashcardColor(rawValue: category.colorName)!.color)
+                    }
+                }
+                .onDelete { indexSet in
+                    deleteCategories(offsets: indexSet)
                 }
             }
-            .onDelete { indexSet in
-                deleteCategories(offsets: indexSet)
-            }
-        }
-        .navigationTitle("Categories")
-        .overlay {
-            if categories.isEmpty {
-                ContentUnavailableView {
-                    Label("No categories at the moment", systemImage: "tag.slash")
-                } description: {
-                    Text("Start adding on the top-right")
+            .navigationTitle("Categories")
+            .overlay {
+                if categories.isEmpty {
+                    ContentUnavailableView {
+                        Label("No categories at the moment", systemImage: "tag.slash")
+                    } description: {
+                        Text("Start adding on the top-right")
+                    }
                 }
             }
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
-            }
-            ToolbarItem {
-                Button(action: toggleForm) {
-                    Label("Add category", systemImage: "plus")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
+                ToolbarItem {
+                    Button(action: toggleForm) {
+                        Label("Add category", systemImage: "plus")
+                    }
                 }
             }
-        }
-        .sheet(isPresented: $isFormPresented) {
-            AddCategoryFormScreen(isAlertPresented: $isCategoryAlertPresented,
-                                  addCategoryFormViewModel: AddCategoryFormViewModel(),
-                                  addCategory: addCategory)
-            .presentationDetents([.medium])
-            .padding()
+            .sheet(isPresented: $isFormPresented) {
+                AddCategoryFormScreen(isAlertPresented: $isCategoryAlertPresented,
+                                      addCategoryFormViewModel: AddCategoryFormViewModel(),
+                                      addCategory: addCategory)
+                .presentationDetents([.medium])
+                .padding()
+            }
         }
     }
     

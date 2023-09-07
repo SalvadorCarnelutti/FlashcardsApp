@@ -9,11 +9,8 @@ import SwiftUI
 
 final class Router: ObservableObject {
     public enum Route: Hashable {
-        case flashcardsGalleryView(Deck)
-        case flashcardCarousel(FlashcardCarouselViewModel)
-        case category(Category)
-        case deck(Deck)
-        case flashcard(Flashcard)
+        case deckGalleryScreen(Deck)
+        case flashcardsCarouselScreen(FlashcardsCarouselViewModel)
     }
     
     @Published var navigationPath = NavigationPath()

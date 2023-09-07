@@ -9,8 +9,8 @@ import SwiftUI
 
 final class EditableFlashcardViewModel: ObservableObject {
     @Bindable var flashcard: Flashcard
-    let flashcardSide: FlashcardSide
     
+    let flashcardSide: FlashcardSide
     var sideText: String { flashcardSide.side }
     var color: Color { flashcardSide.color }
     var placeholder: String { flashcardSide.placeholder }

@@ -9,19 +9,21 @@ import SwiftUI
 import SwiftData
 
 struct DecksScreen: View {
+    @EnvironmentObject var router: Router
     @Environment(\.modelContext) private var modelContext
+    
     @Query(filter: #Predicate<Category> { $0.decks.count > 0 }, sort: \Category.name) private var categories: [Category]
     @Query(filter: #Predicate<Deck> { $0.category == nil }) private var decks: [Deck]
+    
     @State var isFormPresented: Bool = false
     
-    @EnvironmentObject var router: Router
-    
     var body: some View {
+        NavigationStack(path: $router.navigationPath) {
             List {
                 ForEach(categories) { category in
                     Section {
                         ForEach(category.decks) { deck in
-                            NavigationLink(value: Router.Route.flashcardsGalleryView(deck)) {
+                            NavigationLink(value: Router.Route.deckGalleryScreen(deck)) {
                                 Text(deck.name.capitalized)
                             }
                         }
@@ -39,7 +41,7 @@ struct DecksScreen: View {
                 
                 Section {
                     ForEach(decks) { deck in
-                        NavigationLink(deck.name, value: Router.Route.flashcardsGalleryView(deck))
+                        NavigationLink(deck.name, value: Router.Route.deckGalleryScreen(deck))
                     }
                     .onDelete(perform: deleteDecks)
                 }
@@ -64,9 +66,18 @@ struct DecksScreen: View {
                     }
                 }
             }
+            .navigationDestination(for: Router.Route.self) { route in
+                switch route {
+                case let .deckGalleryScreen(deck):
+                    DeckGalleryScreen(deck: deck)
+                case let .flashcardsCarouselScreen(flashcardsCarouselViewModel):
+                    FlashcardsCarouselScreen(flashcardsCarouselViewModel: flashcardsCarouselViewModel)
+                }
+            }
             .sheet(isPresented: $isFormPresented) {
                 AddDeckFormScreen()
             }
+        }
     }
     
     private func deleteCategoryDecks(category: Category, offsets: IndexSet) {

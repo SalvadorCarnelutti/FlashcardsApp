@@ -12,17 +12,18 @@ import Combine
 struct DeckGalleryScreen: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var router: Router
-    let columns = [GridItem(.adaptive(minimum: 150))]
     
-    let deck: Deck
     @Query(sort: \Flashcard.creationDate) private var flashcards: [Flashcard]
     @Query(sort: \Category.name) private var categories: [Category]
     
     @State private var editMode = EditMode.inactive
     @State var isNewCategoryFormPresented: Bool = false
     @State var isEditCategoryFormPresented: Bool = false
-    
     @State private var wiggles = false
+    
+    private static let columns = [GridItem(.adaptive(minimum: 150))]
+    let deck: Deck
+
     init(deck: Deck) {
         self.deck = deck
         // Workaround as of Xcode 15.6, SwiftData doesn't allow dynamic queries
@@ -60,7 +61,7 @@ struct DeckGalleryScreen: View {
             }
             .padding()
             
-            LazyVGrid(columns: columns, spacing: 20) {
+            LazyVGrid(columns: Self.columns, spacing: 20) {
                 CardGalleryItemView(backgroundStyle: deck.flashcardBackgroundColor, action: addFlashcard) {
                     LabeledContent("Add Card") {
                         Image(systemName: "plus")
@@ -106,21 +107,21 @@ struct DeckGalleryScreen: View {
         deck.addFlashcard(newFlashcard)
         modelContext.insert(newFlashcard)
         
-        let flashcardCarouselViewModel = FlashcardCarouselViewModel(flashcards: flashcards,
-                                                                    selectedFlashcard: newFlashcard,
-                                                                    isEditing: true)
+        let flashcardCarouselViewModel = FlashcardsCarouselViewModel(flashcards: flashcards,
+                                                                     selectedFlashcard: newFlashcard,
+                                                                     isEditing: true)
         
         editMode = .inactive
-        router.navigate(to: .flashcardCarousel(flashcardCarouselViewModel))
+        router.navigate(to: .flashcardsCarouselScreen(flashcardCarouselViewModel))
     }
     
     private func selectFlashcard(_ flashCard: Flashcard) {
-        let flashcardCarouselViewModel = FlashcardCarouselViewModel(flashcards: flashcards,
-                                                                    selectedFlashcard: flashCard,
-                                                                    isEditing: editMode.isEditing)
+        let flashcardCarouselViewModel = FlashcardsCarouselViewModel(flashcards: flashcards,
+                                                                     selectedFlashcard: flashCard,
+                                                                     isEditing: editMode.isEditing)
         
         editMode = .inactive
-        router.navigate(to: .flashcardCarousel(flashcardCarouselViewModel))
+        router.navigate(to: .flashcardsCarouselScreen(flashcardCarouselViewModel))
     }
 }
 

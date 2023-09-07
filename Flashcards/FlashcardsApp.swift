@@ -15,32 +15,15 @@ struct FlashcardsApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                NavigationStack(path: $router.navigationPath) {
-                    DecksScreen()
-                        .navigationDestination(for: Router.Route.self) { route in
-                            switch route {
-                            case let .flashcardsGalleryView(deck):
-                                DeckGalleryScreen(deck: deck)
-                            case let .flashcardCarousel(flashcardCarouselViewModel):
-                                FlashcardCarouselScreen(flashcardCarouselViewModel: flashcardCarouselViewModel)
-                                // TODO: Change for proper implementations
-                            case let .flashcard(flashcard):
-                                FlashcardView(flashcard: flashcard)
-                            default:
-                                EmptyView()
-                            }
-                        }
-                }
-                .tabItem {
-                    Label("Decks", systemImage: "rectangle.stack.fill")
-                }
+                DecksScreen()
+                    .tabItem {
+                        Label("Decks", systemImage: "rectangle.stack.fill")
+                    }
                 
-                NavigationStack(path: $router.navigationPath) {
-                    CategoriesScreen()
-                }
-                .tabItem {
-                    Label("Categories", systemImage: "tag.fill")
-                }
+                CategoriesScreen()
+                    .tabItem {
+                        Label("Categories", systemImage: "tag.fill")
+                    }
             }
             .environmentObject(router)
         }
