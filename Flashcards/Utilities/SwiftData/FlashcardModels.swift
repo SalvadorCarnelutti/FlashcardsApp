@@ -20,6 +20,8 @@ final class Category {
         self.decks = decks
         self.colorName = color
     }
+    
+    @Transient var isClearColored: Bool { colorName == "clear" }
 }
 
 @Model
@@ -41,7 +43,7 @@ final class Deck {
     }
     
     @Transient var flashcardBackgroundColor: Color {
-        guard let category = category, category.colorName != "clear" else { return .flashcardsTheme }
+        guard let category = category, !category.isClearColored else { return .flashcardsTheme }
         
         return FlashcardColor(rawValue: category.colorName)?.color ?? .flashcardsTheme
     }
